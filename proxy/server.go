@@ -13,16 +13,23 @@ import (
 	"time"
 )
 
+// ConnectionCount represents the count of active connections on the proxy server.
+var ConnectionCount = 0
+
 // StartServer launches the reverse proxy main http server.
-func StartServer(group *sync.WaitGroup) {
-	host := fmt.Sprintf("%s:%d", viper.GetString(utils.KerberosHost), viper.GetInt(utils.KerberosPort))
+func StartServer(ctx context.Context, group *sync.WaitGroup) {
+	host := fmt.Sprintf("%s:%d", viper.GetString(utils.ProxyServerHost), viper.GetInt(utils.ProxyServerPort))
 
-	stop := make(chan os.Signal, 1)
-	signal.Notify(stop, os.Interrupt)
+	// Catch interrupt signal in channel.
+	interruptSignalChannel := make(chan os.Signal, 1)
+	signal.Notify(interruptSignalChannel, os.Interrupt)
 
+	// Initiate routes.
 	router := mux.NewRouter()
-
-	for _, route := range getRoutes() {
+	for _, middleware := range middlewares {
+		router.Use(middleware)
+	}
+	for _, route := range routes {
 		router.HandleFunc(route.Path, route.Handler).Methods(route.Methods...)
 	}
 
@@ -42,13 +49,12 @@ func StartServer(group *sync.WaitGroup) {
 		}
 	}()
 
-	<-stop
+	// Wait for interruption signal.
+	<-interruptSignalChannel
 
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-
+	// Shutdown server.
 	if err := server.Shutdown(ctx); err != nil {
-		utils.Logger.StdError(err, nil)
-		os.Exit(1)
+		utils.LogAndForceExit(err)
 	}
 
 	utils.Logger.Info("API server stopped.", nil)

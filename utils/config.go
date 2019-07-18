@@ -13,12 +13,24 @@ var VerboseFlag bool
 type ConfigSetter func(key string, value interface{})
 
 const (
-	// KerberosHost is the host name for the Kerberos reverse proxy.
-	KerberosHost = "kerberos.host"
-	// KerberosPort is the port for the Kerberos reverse proxy.
-	KerberosPort = "kerberos.port"
-	// KerberosAPIPort is the port for the Kerberos reverse proxy administration API.
-	KerberosAPIPort = "kerberos.api_port"
+	// ProxyServerHost is the host name for the Kerberos reverse proxy.
+	ProxyServerHost = "http.proxy.host"
+	// ProxyServerPort is the port for the Kerberos reverse proxy.
+	ProxyServerPort = "http.proxy.port"
+	// APIServerHost is the host name for the Kerberos reverse proxy administration API.
+	APIServerHost = "http.api.host"
+	// APIServerPort is the port for the Kerberos reverse proxy administration API.
+	APIServerPort = "http.api.port"
+	// DatabaseServerHost is the host name for the Kerberos MySQL database server.
+	DatabaseServerHost = "database.host"
+	// DatabaseServerPort is the port for the the Kerberos MySQL database server.
+	DatabaseServerPort = "database.port"
+	// DatabaseServerUser is the username for the the Kerberos MySQL database server.
+	DatabaseServerUser = "database.user"
+	// DatabaseServerPass is the password for the the Kerberos MySQL database server.
+	DatabaseServerPass = "database.pass"
+	// DatabaseServerDBName is the name of the database for the the Kerberos MySQL database server.
+	DatabaseServerDBName = "database.dbname"
 )
 
 // ASCIILogo is the ascii representation of the Athena logo
@@ -40,9 +52,15 @@ func SetConfigDefaults(force bool) {
 	} else {
 		setConfig = viper.SetDefault
 	}
-	setConfig(KerberosHost, "127.0.0.1")
-	setConfig(KerberosPort, 8970)
-	setConfig(KerberosAPIPort, 8971)
+	setConfig(ProxyServerHost, "127.0.0.1")
+	setConfig(ProxyServerPort, 8970)
+	setConfig(APIServerHost, "127.0.0.1")
+	setConfig(APIServerPort, 8971)
+	setConfig(DatabaseServerHost, "127.0.0.1")
+	setConfig(DatabaseServerPort, 3306)
+	setConfig(DatabaseServerUser, "root")
+	setConfig(DatabaseServerPass, "root")
+	setConfig(DatabaseServerDBName, "kerberos")
 }
 
 // WriteConfig replaces the config file by the current configuration.

@@ -5,14 +5,12 @@ import (
 	"net/http"
 )
 
-func getRoutes() []utils.Route {
-	return []utils.Route{
-		{
-			Path:    "/",
-			Methods: []string{utils.GET},
-			Handler: homeHandler,
-		},
-	}
+var routes = []utils.Route{
+	{
+		Path:    "/",
+		Methods: []string{http.MethodGet},
+		Handler: homeHandler,
+	},
 }
 
 func homeHandler(w http.ResponseWriter, _ *http.Request) {
