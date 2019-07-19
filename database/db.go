@@ -27,7 +27,7 @@ func generateRandomPassword(length int) string {
 func generateFirstUser() error {
 	plainPassword := generateRandomPassword(18)
 
-	password, err := bcrypt.GenerateFromPassword([]byte(plainPassword), 13)
+	password, err := bcrypt.GenerateFromPassword([]byte(plainPassword), 15)
 	if err != nil {
 		return err
 	}
@@ -59,7 +59,8 @@ func HandleFirstStart() error {
 	if !isFirstStart() {
 		return nil
 	}
-	utils.Logger.Info("Generating first user...", nil)
+	utils.Logger.Info("First start detected, generating default data...", nil)
+	utils.Logger.Info("Generating first admin user...", nil)
 
 	return generateFirstUser()
 }

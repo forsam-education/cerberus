@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// startCmd represents the config command
+// startCmd represents the config command.
 var startCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Starts the Kerberos reverse proxy.",
@@ -57,7 +57,7 @@ var startCmd = &cobra.Command{
 		waitgroup.Add(2)
 		go proxy.StartServer(ctx, &waitgroup)
 		go api.StartServer(ctx, &waitgroup)
-		time.Sleep(4 * time.Second)
+
 		waitgroup.Wait()
 	},
 }

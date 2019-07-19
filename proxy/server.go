@@ -57,6 +57,6 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 		utils.LogAndForceExit(err)
 	}
 
-	utils.Logger.Info("API server stopped.", nil)
+	utils.Logger.Info("Proxy server stopped.", nil)
 	group.Done()
 }
