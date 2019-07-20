@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/forsam-education/kerberos/models"
 	"github.com/forsam-education/kerberos/utils"
+	"github.com/spf13/viper"
 	"github.com/volatiletech/sqlboiler/boil"
 	"golang.org/x/crypto/bcrypt"
 	"math/rand"
@@ -27,7 +28,7 @@ func generateRandomPassword(length int) string {
 func generateFirstUser() error {
 	plainPassword := generateRandomPassword(18)
 
-	password, err := bcrypt.GenerateFromPassword([]byte(plainPassword), 15)
+	password, err := bcrypt.GenerateFromPassword([]byte(plainPassword), viper.GetInt(utils.PasswordHashCost))
 	if err != nil {
 		return err
 	}

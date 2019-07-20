@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"sync"
 	"time"
 )
@@ -29,8 +30,10 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	for _, middleware := range middlewares {
 		router.Use(middleware)
 	}
-	for _, route := range routes {
-		router.HandleFunc(route.Path, route.Handler).Methods(route.Methods...)
+	for _, service := range services {
+		router.HandleFunc(service.Path, func(writer http.ResponseWriter, request *http.Request) {
+			http.Redirect(writer, request, service.TargetURL, http.StatusMovedPermanently)
+		}).Methods(strings.Split(service.Methods, ",")...)
 	}
 
 	server := &http.Server{
@@ -39,7 +42,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-
+     n
 	go func() {
 		utils.Logger.Info(fmt.Sprintf("Proxy server listening on http://%s...", host), nil)
 

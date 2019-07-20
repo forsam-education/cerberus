@@ -31,6 +31,8 @@ const (
 	DatabaseServerPass = "database.pass"
 	// DatabaseServerDBName is the name of the database for the the Kerberos MySQL database server.
 	DatabaseServerDBName = "database.dbname"
+	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
+	PasswordHashCost = "misc.password_hash_cost"
 )
 
 // ASCIILogo is the ascii representation of the Athena logo
@@ -61,6 +63,7 @@ func SetConfigDefaults(force bool) {
 	setConfig(DatabaseServerUser, "root")
 	setConfig(DatabaseServerPass, "root")
 	setConfig(DatabaseServerDBName, "kerberos")
+	setConfig(PasswordHashCost, 15)
 }
 
 // WriteConfig replaces the config file by the current configuration.

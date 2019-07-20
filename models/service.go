@@ -27,6 +27,7 @@ type Service struct {
 	Description string `boil:"description" json:"description" toml:"description" yaml:"description"`
 	Path        string `boil:"path" json:"path" toml:"path" yaml:"path"`
 	TargetURL   string `boil:"target_url" json:"target_url" toml:"target_url" yaml:"target_url"`
+	Methods     string `boil:"methods" json:"methods" toml:"methods" yaml:"methods"`
 
 	R *serviceR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L serviceL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -38,12 +39,14 @@ var ServiceColumns = struct {
 	Description string
 	Path        string
 	TargetURL   string
+	Methods     string
 }{
 	ID:          "id",
 	Name:        "name",
 	Description: "description",
 	Path:        "path",
 	TargetURL:   "target_url",
+	Methods:     "methods",
 }
 
 // Generated where
@@ -72,12 +75,14 @@ var ServiceWhere = struct {
 	Description whereHelperstring
 	Path        whereHelperstring
 	TargetURL   whereHelperstring
+	Methods     whereHelperstring
 }{
 	ID:          whereHelperuint{field: "`service`.`id`"},
 	Name:        whereHelperstring{field: "`service`.`name`"},
 	Description: whereHelperstring{field: "`service`.`description`"},
 	Path:        whereHelperstring{field: "`service`.`path`"},
 	TargetURL:   whereHelperstring{field: "`service`.`target_url`"},
+	Methods:     whereHelperstring{field: "`service`.`methods`"},
 }
 
 // ServiceRels is where relationship names are stored.
@@ -97,8 +102,8 @@ func (*serviceR) NewStruct() *serviceR {
 type serviceL struct{}
 
 var (
-	serviceAllColumns            = []string{"id", "name", "description", "path", "target_url"}
-	serviceColumnsWithoutDefault = []string{"name", "description", "path", "target_url"}
+	serviceAllColumns            = []string{"id", "name", "description", "path", "target_url", "methods"}
+	serviceColumnsWithoutDefault = []string{"name", "description", "path", "target_url", "methods"}
 	serviceColumnsWithDefault    = []string{"id"}
 	servicePrimaryKeyColumns     = []string{"id"}
 )

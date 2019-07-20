@@ -6,12 +6,12 @@ CREATE TABLE `service` (
   `description` text NOT NULL,
   `path` varchar(30) NOT NULL DEFAULT '',
   `target_url` varchar(250) NOT NULL DEFAULT '',
+  `methods` set('GET','POST','PUT','HEAD','DELETE','TRACE','OPTIONS') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `user`;
-
 CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
@@ -22,4 +22,4 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;

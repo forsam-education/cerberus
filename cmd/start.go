@@ -50,6 +50,10 @@ var startCmd = &cobra.Command{
 			utils.LogAndForceExit(err)
 		}
 
+		if err := proxy.LoadServices(); err != nil {
+			utils.LogAndForceExit(err)
+		}
+
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
 		var waitgroup sync.WaitGroup
