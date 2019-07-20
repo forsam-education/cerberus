@@ -42,7 +42,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-     n
+
 	go func() {
 		utils.Logger.Info(fmt.Sprintf("Proxy server listening on http://%s...", host), nil)
 

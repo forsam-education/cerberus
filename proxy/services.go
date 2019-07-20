@@ -8,6 +8,7 @@ import (
 
 var services models.ServiceSlice
 
+// LoadServices gets services from the database and sets them to the services variable.
 func LoadServices() error {
 	utils.Logger.Info("Loading services from database...", nil)
 
