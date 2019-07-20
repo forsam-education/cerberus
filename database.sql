@@ -1,4 +1,17 @@
+DROP TABLE IF EXISTS `service`;
+
+CREATE TABLE `service` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(130) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `path` varchar(30) NOT NULL DEFAULT '',
+  `target_url` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS `user`;
+
 CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
