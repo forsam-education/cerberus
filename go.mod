@@ -12,6 +12,7 @@ require (
 	github.com/lib/pq v1.2.0 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
 	github.com/mattn/go-sqlite3 v1.11.0 // indirect
+	github.com/mattn/go-stackbuilder v0.0.0-20131021072435-3cb43689d154
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pelletier/go-toml v1.4.0 // indirect
 	github.com/pkg/errors v0.8.1

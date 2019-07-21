@@ -1,7 +1,7 @@
 [mysql]
   dbname  = "kerberos"
   host    = "127.0.0.1"
-  port    = 3308
+  port    = 3309
   user    = "root"
   pass    = "root"
   sslmode = "false"

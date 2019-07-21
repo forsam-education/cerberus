@@ -4,12 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/forsam-education/kerberos/utils"
-	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"net/http"
 	"os"
 	"os/signal"
-	"strings"
 	"sync"
 	"time"
 )
@@ -25,19 +23,10 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	interruptSignalChannel := make(chan os.Signal, 1)
 	signal.Notify(interruptSignalChannel, os.Interrupt)
 
-	// Initiate routes.
-	router := mux.NewRouter()
-	for _, middleware := range middlewares {
-		router.Use(middleware)
-	}
-	for _, service := range services {
-		router.HandleFunc(service.Path, func(writer http.ResponseWriter, request *http.Request) {
-			http.Redirect(writer, request, service.TargetURL, http.StatusMovedPermanently)
-		}).Methods(strings.Split(service.Methods, ",")...)
-	}
+	Swapper = &routerSwapper{router: LoadRouter()}
 
 	server := &http.Server{
-		Handler:      router,
+		Handler:      Swapper,
 		Addr:         host,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,

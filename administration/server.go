@@ -23,11 +23,11 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 
 	// Initiate routes.
 	router := mux.NewRouter()
-	for _, middleware := range middlewares {
+	for _, middleware := range globalMiddlewares {
 		router.Use(middleware)
 	}
 	for _, route := range routes {
-		router.HandleFunc(route.Path, route.Handler).Methods(route.Methods...)
+		router.Handle(route.Path, route.Handler).Methods(route.Methods...)
 	}
 
 	server := &http.Server{
