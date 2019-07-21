@@ -7,9 +7,6 @@ import (
 	"os"
 )
 
-// VerboseFlag describes if Kerberos is in verbose mode.
-var VerboseFlag bool
-
 // ConfigSetter should set a config to a given value.
 type ConfigSetter func(key string, value interface{})
 
