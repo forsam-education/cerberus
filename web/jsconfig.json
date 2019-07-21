@@ -1,0 +1,16 @@
+{
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@API": ["src/helpers/API.js"],
+      "@Config": ["src/config.js"],
+      "@Component/*": ["src/components/*"],
+      "@View/*": ["src/views/*"],
+      "@MasterStyle": ["src/scss/master.scss"],
+      "@Asset/*": ["src/assets/*"],
+      "@Test/*": ["__test__/*"],
+      "@/*": ["src/*"]
+    }
+  }
+}

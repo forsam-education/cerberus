@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/forsam-education/kerberos/utils"
+	"github.com/gobuffalo/packr/v2"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"net/http"
@@ -17,17 +18,23 @@ import (
 func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
+	// Generate administration frontend fileserver.
+	frontApplicationBox := packr.New("frontApplication", "../web/dist")
+	frontAppServer := spaHandler{indexPath: "index.html", staticPath: frontApplicationBox.Path}
+
 	// Catch interrupt signal in channel.
 	interruptSignalChannel := make(chan os.Signal, 1)
 	signal.Notify(interruptSignalChannel, os.Interrupt)
 
 	// Initiate routes.
 	router := mux.NewRouter()
+	apiRouter := router.PathPrefix("/api/").Subrouter()
+	router.PathPrefix("/").Handler(frontAppServer)
 	for _, middleware := range globalMiddlewares {
-		router.Use(middleware)
+		apiRouter.Use(middleware)
 	}
-	for _, route := range routes {
-		router.Handle(route.Path, route.Handler).Methods(route.Methods...)
+	for _, route := range apiRoutes {
+		apiRouter.Handle(route.Path, route.Handler).Methods(route.Methods...)
 	}
 
 	server := &http.Server{

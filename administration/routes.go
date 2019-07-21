@@ -6,12 +6,7 @@ import (
 	"net/http"
 )
 
-var routes = []utils.Route{
-	{
-		Path:    "/",
-		Methods: []string{http.MethodGet},
-		Handler: homeHandler,
-	},
+var apiRoutes = []utils.Route{
 	{
 		Path:    "/api/services",
 		Methods: []string{http.MethodGet},
@@ -22,8 +17,4 @@ var routes = []utils.Route{
 		Methods: []string{http.MethodPost},
 		Handler: controllers.CreateService,
 	},
-}
-
-func homeHandler(w http.ResponseWriter, _ *http.Request) {
-	_, _ = w.Write([]byte("Hello from administration panel"))
 }
