@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	"log"
 	"os"
@@ -17,10 +18,10 @@ const (
 	ProxyServerHost = "http.proxy.host"
 	// ProxyServerPort is the port for the Kerberos reverse proxy.
 	ProxyServerPort = "http.proxy.port"
-	// APIServerHost is the host name for the Kerberos reverse proxy administration API.
-	APIServerHost = "http.api.host"
-	// APIServerPort is the port for the Kerberos reverse proxy administration API.
-	APIServerPort = "http.api.port"
+	// AdministrationServerHost is the host name for the Kerberos reverse proxy administration.
+	AdministrationServerHost = "http.administration.host"
+	// AdministrationServerPort is the port for the Kerberos reverse proxy administration.
+	AdministrationServerPort = "http.administration.port"
 	// DatabaseServerHost is the host name for the Kerberos MySQL database server.
 	DatabaseServerHost = "database.host"
 	// DatabaseServerPort is the port for the the Kerberos MySQL database server.
@@ -56,9 +57,9 @@ func SetConfigDefaults(force bool) {
 	}
 	setConfig(ProxyServerHost, "127.0.0.1")
 	setConfig(ProxyServerPort, 8970)
-	setConfig(APIServerHost, "127.0.0.1")
-	setConfig(APIServerPort, 8971)
-	setConfig(DatabaseServerHost, "127.0.0.1")
+	setConfig(AdministrationServerHost, "127.0.0.1")
+	setConfig(AdministrationServerPort, 8971)
+	setConfig(DatabaseServerHost, "database")
 	setConfig(DatabaseServerPort, 3306)
 	setConfig(DatabaseServerUser, "root")
 	setConfig(DatabaseServerPass, "root")
@@ -69,10 +70,25 @@ func SetConfigDefaults(force bool) {
 // WriteConfig replaces the config file by the current configuration.
 func WriteConfig() {
 	filePath := viper.ConfigFileUsed()
+	if filePath == "" {
+		filePath = "./config.toml"
+	}
 	_ = os.Remove(filePath)
 	CreateFile(filePath)
 	err := viper.WriteConfig()
 	if nil != err {
 		log.Fatalln(err)
 	}
+}
+
+// BuildDBDSN returns a complete MySQL DSN from configuration.
+func BuildDBDSN() string {
+	return fmt.Sprintf(
+		"%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		viper.GetString(DatabaseServerUser),
+		viper.GetString(DatabaseServerPass),
+		viper.GetString(DatabaseServerHost),
+		viper.GetInt(DatabaseServerPort),
+		viper.GetString(DatabaseServerDBName),
+	)
 }

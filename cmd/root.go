@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
@@ -48,14 +49,21 @@ func initConfig() {
 		utils.SetConfigDefaults(false)
 
 		viper.SetConfigType("toml")
-		viper.SetConfigFile(path.Join(home, ".kerberos/config.toml"))
+		viper.AddConfigPath(home)
+		viper.AddConfigPath(path.Join(home, ".kerberos"))
+		viper.AddConfigPath(".")
+		viper.SetConfigName("config")
 	}
-	viper.AutomaticEnv()
+	viper.SetEnvPrefix("kerberos")
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
 
 	if !utils.FileExists(viper.ConfigFileUsed()) {
-		utils.SetConfigDefaults(true)
+		utils.SetConfigDefaults(false)
 		utils.WriteConfig()
 	}
+
+	viper.AutomaticEnv()
 
 	_ = viper.ReadInConfig()
 }

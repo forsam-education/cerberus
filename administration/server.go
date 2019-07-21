@@ -1,4 +1,4 @@
-package api
+package administration
 
 import (
 	"context"
@@ -13,9 +13,9 @@ import (
 	"time"
 )
 
-// StartServer starts the administration API HTTP server.
+// StartServer starts the administration HTTP server.
 func StartServer(ctx context.Context, group *sync.WaitGroup) {
-	host := fmt.Sprintf("%s:%d", viper.GetString(utils.APIServerHost), viper.GetInt(utils.APIServerPort))
+	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
 	// Catch interrupt signal in channel.
 	interruptSignalChannel := make(chan os.Signal, 1)
@@ -38,7 +38,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	}
 
 	go func() {
-		utils.Logger.Info(fmt.Sprintf("API server listening on http://%s...", host), nil)
+		utils.Logger.Info(fmt.Sprintf("Administration server listening on http://%s...", host), nil)
 
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			utils.LogAndForceExit(err)
@@ -53,6 +53,6 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 		utils.LogAndForceExit(err)
 	}
 
-	utils.Logger.Info("API server stopped.", nil)
+	utils.Logger.Info("Administration server stopped.", nil)
 	group.Done()
 }

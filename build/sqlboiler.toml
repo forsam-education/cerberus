@@ -5,3 +5,4 @@
   user    = "root"
   pass    = "root"
   sslmode = "false"
+  blacklist = ["migration"]

@@ -1,4 +1,4 @@
-package api
+package administration
 
 import (
 	"github.com/forsam-education/kerberos/utils"

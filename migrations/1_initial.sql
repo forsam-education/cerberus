@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS `service`;
-
+-- +migrate Up
 CREATE TABLE `service` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(130) NOT NULL DEFAULT '',
@@ -11,7 +10,6 @@ CREATE TABLE `service` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
@@ -23,3 +21,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+-- +migrate Down
+DROP TABLE `service`;
+DROP TABLE `user`;
