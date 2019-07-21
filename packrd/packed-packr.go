@@ -31,13 +31,12 @@ var _ = func() error {
 		b.SetResolver("main.js", packr.Pointer{ForwardBox: gk, ForwardPath: "4cff7f881f1932870b250477e898eac7"})
 		b.SetResolver("mdr.html", packr.Pointer{ForwardBox: gk, ForwardPath: "9d0f8763356902170ec565bef2ca8935"})
 		b.SetResolver("vendors~main.js", packr.Pointer{ForwardBox: gk, ForwardPath: "5e9da3dcf567ad830865305b572c1428"})
-		}()
-
+	}()
 
 	func() {
 		b := packr.New("migrations", "../migrations")
 		b.SetResolver("1_initial.sql", packr.Pointer{ForwardBox: gk, ForwardPath: "ce02b9e84e59cf013798fd8457e3bc32"})
-		}()
+	}()
 
 	return nil
 }()
