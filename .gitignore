@@ -118,3 +118,4 @@ bin
 .idea
 kerberos
 kerberos.toml
+*-packr.go
