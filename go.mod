@@ -3,7 +3,7 @@ module github.com/forsam-education/kerberos
 go 1.12
 
 require (
-	github.com/forsam-education/simplelogger v0.2.0
+	github.com/forsam-education/simplelogger v0.2.3
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/gobuffalo/logger v1.0.1 // indirect
 	github.com/gobuffalo/packr/v2 v2.5.2
