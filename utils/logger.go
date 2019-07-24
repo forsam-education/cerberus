@@ -12,7 +12,7 @@ var Logger simplelogger.Logger
 var VerboseFlag bool
 
 func init() {
-	Logger = simplelogger.NewDefaultLogger()
+	Logger = simplelogger.NewDefaultLogger(simplelogger.DEBUG)
 }
 
 // LogAndForceExit is a quick helper to force exit on unrecoverable errors.
