@@ -8,7 +8,15 @@
 
 # THIS PROJECT IS NOT WORKING ATM. WIP.
 
-## TODO
+## Quality assurance
+
+To fix the basics of code format, you can run `go fmt ./...`.
+
+For a bit more advanced code style checks, you can run `golint $(go list ./... | grep -v /vendor/)`. You'll have to run `go get -u golang.org/x/lint/golint` before.
+
+## Dependencies upgrades
+
+The dependendencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos?ref=badge_large)
