@@ -1,8 +1,11 @@
 <p align="center">
     <img width="360" height="360" src=".github/logo.png" alt="Cerberus" title="Cerberus" />
 </p>
+<br/><br/>
+Cerberus is a simple yet powerful, modern and easily configurable reverse proxy solution.
+<br/><br/>
 
-[![CircleCI](https://circleci.com/gh/forsam-education/cerberus.svg?style=svg)](https://circleci.com/gh/forsam-education/cerberus)
+[![CircleCI](https://img.shields.io/circleci/build/github/forsam-education/cerberus/master?token=%090a0a96eee122b4d3a3bdee527f18341d37cd5180)](https://circleci.com/gh/forsam-education/cerberus)
 [![GoDoc](https://godoc.org/github.com/forsam-education/cerberus?status.svg)](https://godoc.org/github.com/forsam-education/cerberus)
 [![Go Report Card](https://goreportcard.com/badge/github.com/forsam-education/cerberus)](https://goreportcard.com/report/github.com/forsam-education/cerberus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
