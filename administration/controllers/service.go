@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/forsam-education/kerberos/models"
-	"github.com/forsam-education/kerberos/proxy"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/models"
+	"github.com/forsam-education/cerberus/proxy"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/volatiletech/sqlboiler/boil"
 	"net/http"
 )

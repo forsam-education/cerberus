@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/rubenv/sql-migrate"
 )

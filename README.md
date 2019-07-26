@@ -1,10 +1,10 @@
-# Kerberos
+# Cerberus
 
-[![CircleCI](https://circleci.com/gh/forsam-education/kerberos.svg?style=svg)](https://circleci.com/gh/forsam-education/kerberos)
-[![GoDoc](https://godoc.org/github.com/forsam-education/kerberos?status.svg)](https://godoc.org/github.com/forsam-education/kerberos)
-[![Go Report Card](https://goreportcard.com/badge/github.com/forsam-education/kerberos)](https://goreportcard.com/report/github.com/forsam-education/kerberos)
+[![CircleCI](https://circleci.com/gh/forsam-education/cerberus.svg?style=svg)](https://circleci.com/gh/forsam-education/cerberus)
+[![GoDoc](https://godoc.org/github.com/forsam-education/cerberus?status.svg)](https://godoc.org/github.com/forsam-education/cerberus)
+[![Go Report Card](https://goreportcard.com/badge/github.com/forsam-education/cerberus)](https://goreportcard.com/report/github.com/forsam-education/cerberus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_shield)
 
 # THIS PROJECT IS NOT WORKING ATM. WIP.
 
@@ -19,4 +19,4 @@ For a bit more advanced code style checks, you can run `golint $(go list ./... |
 The dependendencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
 
 ## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fkerberos?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_large)

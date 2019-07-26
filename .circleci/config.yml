@@ -5,7 +5,7 @@ jobs:
       - image: circleci/golang:1.12
         environment:
           GO111MODULE: "on"
-    working_directory: /go/src/github.com/forsam-education/kerberos
+    working_directory: /go/src/github.com/forsam-education/cerberus
 
     steps:
       - checkout
@@ -27,4 +27,4 @@ jobs:
 
       - run:
           name: Build
-          command: GOOS=linux go build -ldflags="-s -w" -o bin/kerberos ./main.go
+          command: GOOS=linux go build -ldflags="-s -w" -o bin/cerberus ./main.go

@@ -2,8 +2,8 @@ package proxy
 
 import (
 	"fmt"
-	"github.com/forsam-education/kerberos/models"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/models"
+	"github.com/forsam-education/cerberus/utils"
 )
 
 var services models.ServiceSlice

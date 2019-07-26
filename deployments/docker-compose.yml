@@ -7,12 +7,12 @@ services:
     ports:
       - '3308:3306'
     environment:
-      MYSQL_DATABASE: 'kerberos'
-      MYSQL_USER: 'kerberos'
-      MYSQL_PASSWORD: 'kerberos'
+      MYSQL_DATABASE: 'cerberus'
+      MYSQL_USER: 'cerberus'
+      MYSQL_PASSWORD: 'cerberus'
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
 
-  kerberos:
+  cerberus:
     build:
       context: ../
       dockerfile: ./build/package/Dockerfile
@@ -24,13 +24,13 @@ services:
     depends_on:
       - database
     environment:
-      KERBEROS_DATABASE_DBNAME: kerberos
-      KERBEROS_DATABASE_HOST: database
-      KERBEROS_DATABASE_PORT: 3306
-      KERBEROS_DATABASE_USER: kerberos
-      KERBEROS_DATABASE_PASS: kerberos
-      KERBEROS_HTTP_PROXY_HOST: 0.0.0.0
-      KERBEROS_HTTP_PROXY_PORT: 8970
-      KERBEROS_HTTP_ADMINISTRATION_HOST: 0.0.0.0
-      KERBEROS_HTTP_ADMINISTRATION_PORT: 8971
-      KERBEROS_MISC_PASSWORD_HASH_COST: 14
+      CERBERUS_DATABASE_DBNAME: cerberus
+      CERBERUS_DATABASE_HOST: database
+      CERBERUS_DATABASE_PORT: 3306
+      CERBERUS_DATABASE_USER: cerberus
+      CERBERUS_DATABASE_PASS: cerberus
+      CERBERUS_HTTP_PROXY_HOST: 0.0.0.0
+      CERBERUS_HTTP_PROXY_PORT: 8970
+      CERBERUS_HTTP_ADMINISTRATION_HOST: 0.0.0.0
+      CERBERUS_HTTP_ADMINISTRATION_PORT: 8971
+      CERBERUS_MISC_PASSWORD_HASH_COST: 14

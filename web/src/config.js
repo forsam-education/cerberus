@@ -2,7 +2,7 @@
  * ROUTER PART
  */
 // Used for the routes title
-export const SiteName = 'Kerberos';
+export const SiteName = 'Cerberus';
 export const TitleSeparator = ' - ';
 
 // Vue Router Mode config

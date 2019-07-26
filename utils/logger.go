@@ -8,7 +8,7 @@ import (
 // Logger is the shared logger for the application.
 var Logger simplelogger.Logger
 
-// VerboseFlag describes if Kerberos is in verbose mode.
+// VerboseFlag describes if Cerberus is in verbose mode.
 var VerboseFlag bool
 
 func init() {

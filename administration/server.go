@@ -3,7 +3,7 @@ package administration
 import (
 	"context"
 	"fmt"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/gobuffalo/packr/v2"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"

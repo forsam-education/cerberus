@@ -2,7 +2,7 @@ package administration
 
 import (
 	"fmt"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/utils"
 	"net/http"
 )
 

@@ -1,7 +1,7 @@
 {
-  "name": "kerberos-vue-app",
+  "name": "cerberus-vue-app",
   "version": "1.0.0",
-  "description": "A light Vue.js application to monitor and manage Kerberos reverse proxy.",
+  "description": "A light Vue.js application to monitor and manage Cerberus reverse proxy.",
   "author": "Quentin Raimbault <quentin.raimbault@gmail.com>",
   "scripts": {
     "serve": "cross-env NODE_ENV=production node bin/spa-server.js",
@@ -81,7 +81,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/forsam-education/kerberos/issues",
+    "url": "https://github.com/forsam-education/cerberus/issues",
     "email": "quentin.raimbault@gmail.com"
   },
   "keywords": [
@@ -100,7 +100,7 @@
   ],
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/forsam-education/kerberos",
+    "url": "https://github.com/forsam-education/cerberus",
     "type": "git"
   },
   "sassLintConfig": ".sass-lint.yml"

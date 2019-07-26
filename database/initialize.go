@@ -2,8 +2,8 @@ package database
 
 import (
 	"fmt"
-	"github.com/forsam-education/kerberos/models"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/models"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/viper"
 	"github.com/volatiletech/sqlboiler/boil"
 	"golang.org/x/crypto/bcrypt"

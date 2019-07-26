@@ -116,6 +116,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 bin
 .idea
-kerberos
-kerberos.toml
+cerberus
+cerberus.toml
 *-packr.go

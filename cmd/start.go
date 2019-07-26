@@ -4,10 +4,10 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/forsam-education/kerberos/administration"
-	"github.com/forsam-education/kerberos/database"
-	"github.com/forsam-education/kerberos/proxy"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/administration"
+	"github.com/forsam-education/cerberus/database"
+	"github.com/forsam-education/cerberus/proxy"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/cobra"
 	"github.com/volatiletech/sqlboiler/boil"
 	"os"
@@ -18,12 +18,12 @@ import (
 // startCmd represents the config command.
 var startCmd = &cobra.Command{
 	Use:   "start",
-	Short: "Starts the Kerberos reverse proxy.",
+	Short: "Starts the Cerberus reverse proxy.",
 	Long: fmt.Sprintf(`%s
 
   A simple but powerful reverse proxy.
 
-  Starts the Kerberos reverse proxy.`, utils.ASCIILogo),
+  Starts the Cerberus reverse proxy.`, utils.ASCIILogo),
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Print(utils.ASCIILogo)
 

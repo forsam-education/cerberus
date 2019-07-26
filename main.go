@@ -3,7 +3,7 @@
 package main
 
 import (
-	"github.com/forsam-education/kerberos/cmd"
+	"github.com/forsam-education/cerberus/cmd"
 	_ "github.com/volatiletech/sqlboiler/drivers/sqlboiler-mysql/driver"
 	_ "github.com/volatiletech/sqlboiler/queries/qm"
 )

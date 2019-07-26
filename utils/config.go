@@ -11,23 +11,23 @@ import (
 type ConfigSetter func(key string, value interface{})
 
 const (
-	// ProxyServerHost is the host name for the Kerberos reverse proxy.
+	// ProxyServerHost is the host name for the Cerberus reverse proxy.
 	ProxyServerHost = "http.proxy.host"
-	// ProxyServerPort is the port for the Kerberos reverse proxy.
+	// ProxyServerPort is the port for the Cerberus reverse proxy.
 	ProxyServerPort = "http.proxy.port"
-	// AdministrationServerHost is the host name for the Kerberos reverse proxy administration.
+	// AdministrationServerHost is the host name for the Cerberus reverse proxy administration.
 	AdministrationServerHost = "http.administration.host"
-	// AdministrationServerPort is the port for the Kerberos reverse proxy administration.
+	// AdministrationServerPort is the port for the Cerberus reverse proxy administration.
 	AdministrationServerPort = "http.administration.port"
-	// DatabaseServerHost is the host name for the Kerberos MySQL database server.
+	// DatabaseServerHost is the host name for the Cerberus MySQL database server.
 	DatabaseServerHost = "database.host"
-	// DatabaseServerPort is the port for the the Kerberos MySQL database server.
+	// DatabaseServerPort is the port for the the Cerberus MySQL database server.
 	DatabaseServerPort = "database.port"
-	// DatabaseServerUser is the username for the the Kerberos MySQL database server.
+	// DatabaseServerUser is the username for the the Cerberus MySQL database server.
 	DatabaseServerUser = "database.user"
-	// DatabaseServerPass is the password for the the Kerberos MySQL database server.
+	// DatabaseServerPass is the password for the the Cerberus MySQL database server.
 	DatabaseServerPass = "database.pass"
-	// DatabaseServerDBName is the name of the database for the the Kerberos MySQL database server.
+	// DatabaseServerDBName is the name of the database for the the Cerberus MySQL database server.
 	DatabaseServerDBName = "database.dbname"
 	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
 	PasswordHashCost = "misc.password_hash_cost"
@@ -60,7 +60,7 @@ func SetConfigDefaults(force bool) {
 	setConfig(DatabaseServerPort, 3306)
 	setConfig(DatabaseServerUser, "root")
 	setConfig(DatabaseServerPass, "root")
-	setConfig(DatabaseServerDBName, "kerberos")
+	setConfig(DatabaseServerDBName, "cerberus")
 	setConfig(PasswordHashCost, 15)
 }
 

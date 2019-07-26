@@ -1,8 +1,8 @@
 package administration
 
 import (
-	"github.com/forsam-education/kerberos/administration/controllers"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/administration/controllers"
+	"github.com/forsam-education/cerberus/utils"
 	"net/http"
 )
 

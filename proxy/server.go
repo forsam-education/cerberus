@@ -3,7 +3,7 @@ package proxy
 import (
 	"context"
 	"fmt"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/viper"
 	"net/http"
 	"os"

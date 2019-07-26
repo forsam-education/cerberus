@@ -1,4 +1,4 @@
-module github.com/forsam-education/kerberos
+module github.com/forsam-education/cerberus
 
 go 1.12
 

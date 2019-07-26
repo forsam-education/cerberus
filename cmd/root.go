@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/forsam-education/kerberos/utils"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/cobra"
 	"os"
 	"path"
@@ -15,7 +15,7 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "kerberos",
+	Use:   "cerberus",
 	Short: "A simple but powerful reverse proxy.",
 	Long: fmt.Sprintf(`%s
 
@@ -32,8 +32,8 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.kerberos/config.yaml)")
-	rootCmd.PersistentFlags().BoolVarP(&utils.VerboseFlag, "verbose", "v", false, "Set kerberos to verbose mode")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cerberus/config.yaml)")
+	rootCmd.PersistentFlags().BoolVarP(&utils.VerboseFlag, "verbose", "v", false, "Set cerberus to verbose mode")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -50,11 +50,11 @@ func initConfig() {
 
 		viper.SetConfigType("toml")
 		viper.AddConfigPath(home)
-		viper.AddConfigPath(path.Join(home, ".kerberos"))
+		viper.AddConfigPath(path.Join(home, ".cerberus"))
 		viper.AddConfigPath(".")
 		viper.SetConfigName("config")
 	}
-	viper.SetEnvPrefix("kerberos")
+	viper.SetEnvPrefix("cerberus")
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 
