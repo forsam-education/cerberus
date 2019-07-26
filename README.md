@@ -1,4 +1,6 @@
-# Cerberus
+<p align="center">
+    <img width="360" height="360" src=".github/logo.png" alt="Cerberus" title="Cerberus" />
+</p>
 
 [![CircleCI](https://circleci.com/gh/forsam-education/cerberus.svg?style=svg)](https://circleci.com/gh/forsam-education/cerberus)
 [![GoDoc](https://godoc.org/github.com/forsam-education/cerberus?status.svg)](https://godoc.org/github.com/forsam-education/cerberus)
