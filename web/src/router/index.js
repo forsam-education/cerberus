@@ -1,29 +1,45 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Dashboard from '@/views/Dashboard'
+import Profile from '@/views/Profile'
+import Tables from '@/views/Tables'
+import Maps from '@/views/Maps'
+import NotFound from '@/views/NotFound'
 
-import { SiteName, TitleSeparator, RouterMode } from '@Config';
+Vue.use(Router)
 
-import Login from '@View/Login.vue';
-
-Vue.use(Router);
-
-const router = new Router({
-  mode: RouterMode,
+export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: Login,
-      meta: {
-        title: 'Login',
-      },
+      name: 'Dashboard',
+      component: Dashboard,
+      props: { page: 1 }
     },
-  ],
-});
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title + TitleSeparator + SiteName;
-  next();
-});
-
-export default router;
+    {
+      path: '/profile',
+      name: 'Profile',
+      props: { page: 2 },
+      component: Profile
+    },
+    {
+      path: '/tables',
+      name: 'Tables',
+      props: { page: 3 },
+      component: Tables
+    },
+    {
+      path: '/maps',
+      name: 'Maps',
+      props: { page: 4 },
+      component: Maps
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      props: { page: 5 },
+      component: NotFound
+    }
+  ]
+})

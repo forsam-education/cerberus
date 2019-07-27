@@ -4,5 +4,5 @@ buildcerberus:
 buildfront:
 	(cd ./web && yarn install && yarn build)
 
-install: buildcerberus buildfront
+install: buildcerberus
 	sudo cp bin/cerberus /usr/local/bin
