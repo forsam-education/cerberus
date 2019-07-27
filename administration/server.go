@@ -20,7 +20,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 
 	// Generate administration frontend fileserver.
 	frontApplicationBox := packr.New("frontApplication", "../web/dist")
-	frontAppServer := spaHandler{indexPath: "index.html", staticPath: frontApplicationBox.Path}
+	frontAppServer := spaHandler{indexPath: "index.html", box: frontApplicationBox}
 
 	// Catch interrupt signal in channel.
 	interruptSignalChannel := make(chan os.Signal, 1)

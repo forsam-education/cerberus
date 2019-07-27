@@ -1,33 +1,31 @@
 package administration
 
 import (
+	"fmt"
+	"github.com/forsam-education/cerberus/utils"
+	"github.com/gobuffalo/packr/v2"
 	"net/http"
-	"os"
-	"path/filepath"
 )
 
 type spaHandler struct {
-	staticPath string
-	indexPath  string
+	box       *packr.Box
+	indexPath string
 }
 
 func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	path, err := filepath.Abs(r.URL.Path)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+	utils.LogVerbose(fmt.Sprintf("Received request on Web Administration route %s from %s", r.URL.Path, r.RemoteAddr), nil)
+
+	if !h.box.Has(r.URL.Path) || r.URL.Path == "/" {
+		indexContent, err := h.box.Find(h.indexPath)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+
+		if _, err := w.Write(indexContent); err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
 		return
 	}
 
-	path = filepath.Join(h.staticPath, path)
-
-	_, err = os.Stat(path)
-	if os.IsNotExist(err) {
-		http.ServeFile(w, r, filepath.Join(h.staticPath, h.indexPath))
-		return
-	} else if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	http.FileServer(http.Dir(h.staticPath)).ServeHTTP(w, r)
+	http.FileServer(h.box).ServeHTTP(w, r)
 }
