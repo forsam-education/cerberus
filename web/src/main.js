@@ -1,36 +1,24 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import VueCookie from 'vue-cookie';
-import Vuetify from 'vuetify';
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './components/App'
+import router from './router'
+import * as VueGoogleMaps from 'vue2-google-maps'
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbvue/build/css/mdb.css'
 
-import router from './router';
-import App from '@Component/App/App.vue';
-import VuexStoreConfig from './vuex/store';
+Vue.use(VueGoogleMaps, {
+  load: {
+    libraries: 'places'
+  }
+})
 
-import { enableAnalytics, analyticsKey, disableAnalyticsInDebug } from './config';
+Vue.config.productionTip = false
 
-if (enableAnalytics) {
-  const VueAnalytics = require('vue-analytics').default;
-  Vue.use(VueAnalytics, {
-    id: analyticsKey,
-    router,
-    debug: {
-      enabled: process.env.NODE_ENV !== 'production',
-      sendHitTask: process.env.NODE_ENV === 'production' || !disableAnalyticsInDebug,
-    },
-  });
-}
-
-Vue.config.productionTip = false;
-
-Vue.use(Vuex);
-Vue.use(VueCookie);
-Vue.use(Vuetify);
-
-const store = new Vuex.Store(VuexStoreConfig);
-
+/* eslint-disable no-new */
 new Vue({
-  render: h => h(App),
+  el: '#app',
   router,
-  store,
-}).$mount('#app');
+  components: { App },
+  template: '<App/>'
+})
