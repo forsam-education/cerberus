@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="360" height="360" src=".github/logo.png" alt="Cerberus" title="Cerberus" />
+    <img width="360" height="360" src="https://content.forsam.io/cerberus/logos/logo_360.png" alt="Cerberus" title="Cerberus" />
 </p>
 <br/><br/>
 Cerberus is a simple yet powerful, modern and easily configurable reverse proxy solution.
@@ -22,6 +22,13 @@ For a bit more advanced code style checks, you can run `golint $(go list ./... |
 ## Dependencies upgrades
 
 The dependendencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
+
+## Docker
+
+We made a Docker image for the software, you can find it on [DockerHub](https://hub.docker.com/r/forsameducation/cerberus).
+It is a two-stages build process, and the final build is based on `scratch` so it is as small as possible.
+
+You can also find an example Docker Compose configuration file at `deployments/docker-compose.yml`.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_large)

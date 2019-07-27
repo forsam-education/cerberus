@@ -1,0 +1,9 @@
+Makefile
+*.md
+LICENSE
+.imgbotconfig
+deployments
+.github
+.circleci
+bin
+build/sqlboiler.toml
