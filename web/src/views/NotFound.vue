@@ -16,19 +16,18 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol } from 'mdbvue'
+import { mdbRow, mdbCol } from "mdbvue";
 
 export default {
-  name: 'NotFound',
+  name: "NotFound",
   components: {
     mdbRow,
     mdbCol
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

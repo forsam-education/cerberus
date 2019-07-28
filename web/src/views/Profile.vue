@@ -140,10 +140,25 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol, mdbCard, mdbCardBody, mdbView, mdbMask, mdbCardTitle, mdbCardText, mdbCardFooter, mdbIcon, mdbBtn, mdbPagination, mdbPageNav, mdbPageItem } from 'mdbvue'
+import {
+  mdbRow,
+  mdbCol,
+  mdbCard,
+  mdbCardBody,
+  mdbView,
+  mdbMask,
+  mdbCardTitle,
+  mdbCardText,
+  mdbCardFooter,
+  mdbIcon,
+  mdbBtn,
+  mdbPagination,
+  mdbPageNav,
+  mdbPageItem
+} from "mdbvue";
 
 export default {
-  name: 'Profile',
+  name: "Profile",
   components: {
     mdbRow,
     mdbCol,
@@ -160,16 +175,15 @@ export default {
     mdbPageNav,
     mdbPageItem
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style scoped>
 .profile-card-footer {
-  background-color: #F7F7F7 !important;
+  background-color: #f7f7f7 !important;
   padding: 1.25rem;
 }
 .card.card-cascade .view {

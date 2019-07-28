@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody, mdbTbl } from 'mdbvue'
+import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody, mdbTbl } from "mdbvue";
 
 export default {
-  name: 'Tables',
+  name: "Tables",
   components: {
     mdbRow,
     mdbCol,
@@ -63,10 +63,10 @@ export default {
     mdbCardBody,
     mdbTbl
   },
-  data () {
-    return {}
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
