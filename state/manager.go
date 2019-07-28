@@ -10,6 +10,7 @@ type manager struct {
 	redisClient *redis.Client
 }
 
+// Manager is the shared state manager for Cerberus.
 var Manager *manager
 
 func (manager *manager) GetCurrentRequestsCount() (int, error) {
