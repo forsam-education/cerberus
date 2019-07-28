@@ -119,3 +119,4 @@ bin
 cerberus
 cerberus.toml
 cerberus2.toml
+*-packr.go
