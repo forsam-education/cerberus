@@ -23,19 +23,19 @@
             <mdb-icon icon="chart-pie" class="mr-3" />Dashboard
           </mdb-list-group-item>
         </router-link>
-        <router-link to="/profile" @click.native="activeItem = 2">
-          <mdb-list-group-item :action="true" :class="activeItem === 2 && 'active'">
-            <mdb-icon icon="user" class="mr-3" />Profile
-          </mdb-list-group-item>
-        </router-link>
-        <router-link to="/tables" @click.native="activeItem = 3">
+        <router-link to="/services" @click.native="activeItem = 3">
           <mdb-list-group-item :action="true" :class="activeItem === 3 && 'active'">
-            <mdb-icon icon="table" class="mr-3" />Tables
+            <mdb-icon icon="cogs" class="mr-3" />Services
           </mdb-list-group-item>
         </router-link>
         <router-link to="/maps" @click.native="activeItem = 4">
           <mdb-list-group-item :action="true" :class="activeItem === 4 && 'active'">
-            <mdb-icon icon="map" class="mr-3" />Maps
+            <mdb-icon icon="users" class="mr-3" />Users
+          </mdb-list-group-item>
+        </router-link>
+        <router-link to="/profile" @click.native="activeItem = 2">
+          <mdb-list-group-item :action="true" :class="activeItem === 2 && 'active'">
+            <mdb-icon icon="user" class="mr-3" /> My Account
           </mdb-list-group-item>
         </router-link>
       </mdb-list-group>
@@ -58,12 +58,26 @@
 </template>
 
 <script>
-import { mdbContainer, mdbNavbar, mdbNavbarBrand, mdbNavItem, mdbNavbarNav, mdbNavbarToggler, mdbBtn, mdbIcon, mdbListGroup, mdbListGroupItem, mdbCardBody, mdbFooter, waves } from 'mdbvue'
-import Dashboard from '@/views/Dashboard'
-import Profile from '@/views/Profile'
+import {
+  mdbContainer,
+  mdbNavbar,
+  mdbNavbarBrand,
+  mdbNavItem,
+  mdbNavbarNav,
+  mdbNavbarToggler,
+  mdbBtn,
+  mdbIcon,
+  mdbListGroup,
+  mdbListGroupItem,
+  mdbCardBody,
+  mdbFooter,
+  waves
+} from "mdbvue";
+import Dashboard from "@/views/Dashboard";
+import Profile from "@/views/Profile";
 
 export default {
-  name: 'AdminTemplate',
+  name: "AdminTemplate",
   components: {
     mdbContainer,
     mdbNavbar,
@@ -76,26 +90,26 @@ export default {
     mdbListGroupItem,
     mdbIcon,
     mdbCardBody,
-    'ftr': mdbFooter,
+    ftr: mdbFooter,
     Dashboard,
     Profile
   },
-  data () {
+  data() {
     return {
       activeItem: 1
-    }
+    };
   },
-  beforeMount () {
-    this.activeItem = this.$route.matched[0].props.default.page
+  beforeMount() {
+    this.activeItem = this.$route.matched[0].props.default.page;
   },
   mixins: [waves]
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 main {
-  background-color: #EDEDEE;
+  background-color: #ededee;
 }
 
 .flexible-content {
@@ -120,7 +134,7 @@ main {
   padding-top: 0;
 }
 
-.sidebar-fixed .logo-wrapper img{
+.sidebar-fixed .logo-wrapper img {
   width: 100%;
   padding: 2.5rem;
 }
@@ -131,8 +145,8 @@ main {
 }
 
 .sidebar-fixed .list-group .active {
-  background-color: #464D5D;
-  border-color: #464D5D;
+  background-color: #464d5d;
+  border-color: #464d5d;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 }

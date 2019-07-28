@@ -79,10 +79,10 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody } from 'mdbvue'
+import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody } from "mdbvue";
 
 export default {
-  name: 'Maps',
+  name: "Maps",
   components: {
     mdbRow,
     mdbCol,
@@ -90,11 +90,10 @@ export default {
     mdbView,
     mdbCardBody
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -103,7 +102,8 @@ export default {
   padding: 1rem 1rem;
   text-align: center;
 }
-.card.card-cascade h3, .card.card-cascade h4 {
+.card.card-cascade h3,
+.card.card-cascade h4 {
   margin-bottom: 0px;
 }
 </style>
