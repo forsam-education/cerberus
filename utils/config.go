@@ -78,7 +78,7 @@ func SetConfigDefaults(force bool) {
 	setConfig(DatabaseServerUser, "root")
 	setConfig(DatabaseServerPass, "root")
 	setConfig(DatabaseServerDBName, "cerberus")
-	setConfig(RedisServerHost, "redis")
+	setConfig(RedisServerHost, "127.0.0.1")
 	setConfig(RedisServerPort, 6379)
 	setConfig(RedisServerPass, "")
 	setConfig(RedisServerDBID, 0)

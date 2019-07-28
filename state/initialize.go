@@ -11,7 +11,31 @@ import (
 	"syscall"
 )
 
-// InitManager connects to redis and setup the state manager.
+const (
+	CurrentNodesCount    = "nodecount"
+	CurrentRequestsCount = "requestcount"
+)
+
+func isRedisInitialized() bool {
+	count, _ := Manager.GetCurrentNodesCount()
+
+	return count > 0
+}
+
+func setDefaultState() error {
+	// Add current node
+	if err := Manager.AddNode(); err != nil {
+		return err
+	}
+
+	// Set current request count to 0
+	if err := Manager.redisClient.Set(CurrentRequestsCount, 0, 0).Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func InitManager() error {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.RedisServerHost), viper.GetInt(utils.RedisServerPort))
 

@@ -1,7 +1,11 @@
 package proxy
 
 import (
+<<<<<<< HEAD
 	"github.com/forsam-education/cerberus/utils"
+=======
+	"github.com/forsam-education/cerberus/state"
+>>>>>>> New: Entire Redis client init
 	"github.com/gofrs/uuid"
 	"net/http"
 )
