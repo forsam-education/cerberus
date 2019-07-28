@@ -8,13 +8,18 @@ import (
 
 var apiRoutes = []utils.Route{
 	{
-		Path:    "/api/services",
+		Path:    "/services",
 		Methods: []string{http.MethodGet},
 		Handler: controllers.ListServices,
 	},
 	{
-		Path:    "/api/services",
+		Path:    "/services",
 		Methods: []string{http.MethodPost},
 		Handler: controllers.CreateService,
+	},
+	{
+		Path:    "/status",
+		Methods: []string{http.MethodGet},
+		Handler: controllers.Status,
 	},
 }

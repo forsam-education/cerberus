@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/signal"
 	"sync"
+	"syscall"
 	"time"
 )
 
@@ -22,8 +23,8 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	//frontAppServer := spaHandler{indexPath: "index.html", box: frontApplicationBox}
 
 	// Catch interrupt signal in channel.
-	interruptSignalChannel := make(chan os.Signal, 1)
-	signal.Notify(interruptSignalChannel, os.Interrupt)
+	signalCatcher := make(chan os.Signal, 1)
+	signal.Notify(signalCatcher, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGKILL)
 
 	// Initiate routes.
 	router := mux.NewRouter()
@@ -35,6 +36,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	for _, route := range apiRoutes {
 		apiRouter.Handle(route.Path, route.Handler).Methods(route.Methods...)
 	}
+	router.PathPrefix("/").Handler(frontAppServer)
 
 	server := &http.Server{
 		Handler:      router,
@@ -52,11 +54,11 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	}()
 
 	// Wait for interruption signal.
-	<-interruptSignalChannel
+	<-signalCatcher
 
 	// Shutdown server.
 	if err := server.Shutdown(ctx); err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.Critical(err.Error(), nil)
 	}
 
 	utils.Logger.Info("Administration server stopped.", nil)
