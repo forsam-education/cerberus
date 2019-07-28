@@ -11,33 +11,6 @@ import (
 	"syscall"
 )
 
-const (
-	// CurrentNodesCount is the redis key for current Cerberus node count.
-	CurrentNodesCount    = "nodecount"
-	// CurrentRequestsCount is the redis key for current Cerberus proxy request count.
-	CurrentRequestsCount = "requestcount"
-)
-
-func isRedisInitialized() bool {
-	count, _ := Manager.GetCurrentNodesCount()
-
-	return count > 0
-}
-
-func setDefaultState() error {
-	// Add current node
-	if err := Manager.AddNode(); err != nil {
-		return err
-	}
-
-	// Set current request count to 0
-	if err := Manager.redisClient.Set(CurrentRequestsCount, 0, 0).Err(); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // InitManager connects to redis and setup the state manager.
 func InitManager() error {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.RedisServerHost), viper.GetInt(utils.RedisServerPort))
@@ -57,15 +30,16 @@ func InitManager() error {
 		return err
 	}
 
-	Manager = &manager{
-		redisClient: redisClient,
+	utils.SharedStateManager = &utils.StateManager{
+		RedisClient: redisClient,
 	}
 
-	if !isRedisInitialized() {
-		err := setDefaultState()
+	if !utils.SharedStateManager.IsRedisInitialized() {
+		err := utils.SharedStateManager.SetDefaultRedisState()
 		return err
 	}
-	err := Manager.AddNode()
+	err := utils.SharedStateManager.AddNode()
+	utils.Logger.Info("Successfully registered node into Redis.", nil)
 
 	return err
 }

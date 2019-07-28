@@ -15,9 +15,6 @@ import (
 	"time"
 )
 
-// ConnectionCount represents the count of active connections on the proxy server.
-var ConnectionCount = 0
-
 // StartServer launches the reverse proxy main http server.
 func StartServer(_ context.Context, group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.ProxyServerHost), viper.GetInt(utils.ProxyServerPort))
@@ -45,8 +42,7 @@ func StartServer(_ context.Context, group *sync.WaitGroup) {
 		utils.Logger.Info(fmt.Sprintf("Proxy server listening on http://%s...", host), nil)
 
 		if err := server.Serve(ln); err != nil && err != http.ErrServerClosed {
-			utils.Logger.StdError(err, nil)
-			os.Exit(1)
+			utils.LogAndForceExit(err)
 		}
 	}()
 
