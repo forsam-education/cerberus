@@ -35,6 +35,12 @@ const (
 	DatabaseServerPass = "database.pass"
 	// DatabaseServerDBName is the name of the database for the the Cerberus MySQL database server.
 	DatabaseServerDBName = "database.dbname"
+	// RedisServerHost is the host name for the Cerberus redis server.
+	RedisServerHost      = "redis.host"
+	// RedisServerPort is the port for the Cerberus redis server.
+	RedisServerPost      = "redis.port"
+	// RedisServerDBID is the database id for the Cerberus redis server.
+	RedisServerDBID      = "redis.dbid"
 	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
 	PasswordHashCost = "misc.password_hash_cost"
 )
