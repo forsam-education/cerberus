@@ -15,7 +15,7 @@
     "mdbvue": "^5.7.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
-    "vue2-google-maps": "^0.10.6"
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
