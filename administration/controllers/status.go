@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"net/http"
 )
@@ -11,6 +12,7 @@ type clusterStatus struct {
 	RequestCount int `json:"request_count"`
 }
 
+<<<<<<< HEAD
 // Status returns a JSON with current Cerberus cluster status.
 func Status(w http.ResponseWriter, _ *http.Request) {
 	nodeCount, err := utils.SharedStateManager.GetCurrentNodesCount()
