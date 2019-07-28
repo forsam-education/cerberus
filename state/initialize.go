@@ -12,7 +12,9 @@ import (
 )
 
 const (
+	// CurrentNodesCount is the redis key for current Cerberus node count.
 	CurrentNodesCount    = "nodecount"
+	// CurrentRequestsCount is the redis key for current Cerberus proxy request count.
 	CurrentRequestsCount = "requestcount"
 )
 
@@ -36,6 +38,7 @@ func setDefaultState() error {
 	return nil
 }
 
+// InitManager connects to redis and setup the state manager.
 func InitManager() error {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.RedisServerHost), viper.GetInt(utils.RedisServerPort))
 

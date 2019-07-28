@@ -7,12 +7,12 @@ import (
 	"net/http"
 )
 
-type ClusterStatus struct {
+type clusterStatus struct {
 	NodeCount    int `json:"node_count"`
 	RequestCount int `json:"request_count"`
 }
 
-// ClusterStatus returns a JSON with current Cerberus cluster status.
+// Status returns a JSON with current Cerberus cluster status.
 func Status(w http.ResponseWriter, _ *http.Request) {
 	nodeCount, err := state.Manager.GetCurrentNodesCount()
 	if err != nil {
@@ -26,7 +26,7 @@ func Status(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	status := ClusterStatus{
+	status := clusterStatus{
 		NodeCount:    nodeCount,
 		RequestCount: requestCount,
 	}
