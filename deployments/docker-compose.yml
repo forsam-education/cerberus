@@ -12,6 +12,12 @@ services:
       MYSQL_PASSWORD: 'cerberus'
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
 
+  redis:
+    image: redis:5.0
+    restart: always
+    ports:
+      - '6379:6379'
+
   cerberus:
     build:
       context: ../

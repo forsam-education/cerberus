@@ -16,6 +16,14 @@ Cerberus is a simple yet powerful, modern and easily configurable reverse proxy 
 
 This project is in a very early work in progress stage.
 
+## Dependencies
+
+Cerberus depends on some services to store both it's temporary and persistent state.
+
+The persistent state is stored in a MySQL 5.7 database, therefor you must have one available and set it properly in the configuration file.
+
+For the temporary state storage (and sharing it between the different instances of Cerberus running in your stack), it uses a Redis server in it's fifth version.
+
 ## Quality assurance
 
 To fix the basics of code format, you can run `go fmt ./...`.

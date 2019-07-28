@@ -5,4 +5,8 @@ buildfront:
 	(cd ./web && yarn install && yarn build)
 
 install: buildcerberus
+<<<<<<< HEAD
 	sudo cp bin/cerberus /usr/local/bin
+=======
+	sudo cp bin/cerberus /usr/local/bin
+>>>>>>> New: Entire Redis client init

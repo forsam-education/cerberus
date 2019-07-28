@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/signal"
 	"sync"
+	"syscall"
 	"time"
 )
 
@@ -22,8 +23,8 @@ func StartServer(_ context.Context, group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.ProxyServerHost), viper.GetInt(utils.ProxyServerPort))
 
 	// Catch interrupt signal in channel.
-	interruptSignalChannel := make(chan os.Signal, 1)
-	signal.Notify(interruptSignalChannel, os.Interrupt)
+	signalCatcher := make(chan os.Signal, 1)
+	signal.Notify(signalCatcher, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGKILL)
 
 	ln, err := reuseport.Listen("tcp4", host)
 	if err != nil {
@@ -50,11 +51,11 @@ func StartServer(_ context.Context, group *sync.WaitGroup) {
 	}()
 
 	// Wait for interruption signal.
-	<-interruptSignalChannel
+	<-signalCatcher
 
 	// Shutdown server.
 	if err := server.Shutdown(); err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.Critical(err.Error(), nil)
 	}
 
 	utils.Logger.Info("Proxy server stopped.", nil)

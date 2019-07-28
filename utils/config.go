@@ -35,12 +35,14 @@ const (
 	DatabaseServerPass = "database.pass"
 	// DatabaseServerDBName is the name of the database for the the Cerberus MySQL database server.
 	DatabaseServerDBName = "database.dbname"
-	// RedisServerHost is the host name for the Cerberus redis server.
-	RedisServerHost      = "redis.host"
-	// RedisServerPort is the port for the Cerberus redis server.
-	RedisServerPost      = "redis.port"
-	// RedisServerDBID is the database id for the Cerberus redis server.
-	RedisServerDBID      = "redis.dbid"
+	// RedisServerHost is the host name for the Cerberus Redis server.
+	RedisServerHost = "redis.host"
+	// RedisServerPort is the port for the Cerberus Redis server.
+	RedisServerPort = "redis.port"
+	// RedisServerDBID is the database id for the Cerberus Redis server.
+	RedisServerDBID = "redis.dbid"
+	// RedisServerPass is the password for the the Cerberus Redis server.
+	RedisServerPass = "redis.pass"
 	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
 	PasswordHashCost = "misc.password_hash_cost"
 )
@@ -76,6 +78,10 @@ func SetConfigDefaults(force bool) {
 	setConfig(DatabaseServerUser, "root")
 	setConfig(DatabaseServerPass, "root")
 	setConfig(DatabaseServerDBName, "cerberus")
+	setConfig(RedisServerHost, "127.0.0.1")
+	setConfig(RedisServerPort, 6379)
+	setConfig(RedisServerPass, "")
+	setConfig(RedisServerDBID, 0)
 	setConfig(PasswordHashCost, 15)
 }
 

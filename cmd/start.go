@@ -7,6 +7,7 @@ import (
 	"github.com/forsam-education/cerberus/administration"
 	"github.com/forsam-education/cerberus/database"
 	"github.com/forsam-education/cerberus/proxy"
+	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/cobra"
 	"github.com/volatiletech/sqlboiler/boil"
@@ -59,6 +60,11 @@ var startCmd = &cobra.Command{
 			utils.LogAndForceExit(err)
 		}
 
+		err = state.InitManager()
+		if err != nil {
+			utils.LogAndForceExit(err)
+		}
+
 		boil.SetDB(db)
 
 		if err = database.HandleFirstStart(); err != nil {
@@ -72,12 +78,15 @@ var startCmd = &cobra.Command{
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
 		var waitgroup sync.WaitGroup
-
 		waitgroup.Add(2)
 		go proxy.StartServer(ctx, &waitgroup)
 		go administration.StartServer(ctx, &waitgroup)
 
 		waitgroup.Wait()
+
+		if err = state.Manager.Shutdown(); err != nil {
+			utils.Logger.Critical(err.Error(), nil)
+		}
 	},
 }
 

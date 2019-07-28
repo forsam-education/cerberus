@@ -17,7 +17,7 @@ func init() {
 
 // LogAndForceExit is a quick helper to force exit on unrecoverable errors.
 func LogAndForceExit(err error) {
-	Logger.StdError(err, nil)
+	Logger.Critical(err.Error(), nil)
 	os.Exit(1)
 }
 
