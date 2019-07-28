@@ -84,11 +84,7 @@ var startCmd = &cobra.Command{
 
 		waitgroup.Wait()
 
-<<<<<<< HEAD
 		if err = utils.SharedStateManager.Shutdown(); err != nil {
-=======
-		if err = state.Manager.Shutdown(); err != nil {
->>>>>>> New: Entire Redis client init
 			utils.Logger.Critical(err.Error(), nil)
 		}
 	},
