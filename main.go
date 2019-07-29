@@ -1,3 +1,5 @@
+// +build go1.12
+
 //go:generate sqlboiler -c ./build/sqlboiler.toml --no-context --add-global-variants mysql
 //go:generate packr2
 package main
