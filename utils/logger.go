@@ -18,8 +18,10 @@ func init() {
 // LogAndForceExit is a quick helper to force exit on unrecoverable errors.
 func LogAndForceExit(err error) {
 	Logger.Critical(err.Error(), nil)
-	if managerErr := SharedStateManager.Shutdown(); managerErr != nil {
-		Logger.Critical(managerErr.Error(), nil)
+	if SharedStateManager != nil {
+		if managerErr := SharedStateManager.Shutdown(); managerErr != nil {
+			Logger.Critical(managerErr.Error(), nil)
+		}
 	}
 	os.Exit(1)
 }
