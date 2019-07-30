@@ -84,8 +84,10 @@ var startCmd = &cobra.Command{
 
 		waitgroup.Wait()
 
-		if err = utils.SharedStateManager.Shutdown(); err != nil {
-			utils.Logger.Critical(err.Error(), nil)
+		if utils.SharedStateManager != nil {
+			if err = utils.SharedStateManager.Shutdown(); err != nil {
+				utils.Logger.Critical(err.Error(), nil)
+			}
 		}
 	},
 }
