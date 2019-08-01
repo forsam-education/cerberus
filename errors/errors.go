@@ -7,7 +7,7 @@ type ErrorType string
 
 const (
 	// ServiceNotFound is the error type when a service cannot be found with the provided path.
-	ServiceNotFound  ErrorType = "ServiceNotFound"
+	ServiceNotFound ErrorType = "ServiceNotFound"
 	// MethodNotAllowed is the error type when a service can't be called with the used HTTP method.
 	MethodNotAllowed ErrorType = "MethodNotAllowed"
 )

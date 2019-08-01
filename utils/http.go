@@ -12,7 +12,7 @@ const (
 	// HeaderXForwardedFor is an HTTP header.
 	HeaderXForwardedFor = "X-Forwarded-For"
 	// HeaderContentType is an HTTP header.
-	HeaderContentType   = "Content-Type"
+	HeaderContentType = "Content-Type"
 )
 
 // Route is the struct that represents an HTTP route to add to a router.
