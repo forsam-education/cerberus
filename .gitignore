@@ -118,4 +118,3 @@ bin
 .idea
 cerberus
 cerberus.toml
-*-packr.go
