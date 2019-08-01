@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/forsam-education/cerberus/utils"
-	"github.com/gobuffalo/packr/v2"
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 	"net/http"
@@ -19,8 +18,8 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
 	// Generate administration frontend fileserver.
-	frontApplicationBox := packr.New("frontApplication", "../web/dist")
-	frontAppServer := spaHandler{indexPath: "index.html", box: frontApplicationBox}
+	//frontApplicationBox := packr.New("frontApplication", "../web/dist")
+	//frontAppServer := spaHandler{indexPath: "index.html", box: frontApplicationBox}
 
 	// Catch interrupt signal in channel.
 	interruptSignalChannel := make(chan os.Signal, 1)
@@ -29,7 +28,7 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	// Initiate routes.
 	router := mux.NewRouter()
 	apiRouter := router.PathPrefix("/api/").Subrouter()
-	router.PathPrefix("/").Handler(frontAppServer)
+	//router.PathPrefix("/").Handler(frontAppServer)
 	for _, middleware := range globalMiddlewares {
 		apiRouter.Use(middleware)
 	}
