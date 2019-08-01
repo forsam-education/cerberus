@@ -19,7 +19,7 @@ func LoadServices() error {
 	}
 
 	for _, service := range services {
-		utils.Logger.Info(fmt.Sprintf("%s - %s - %s", service.Name, service.Path, service.TargetURL), nil)
+		utils.Logger.Info(fmt.Sprintf("%s - %s - %s", service.Name, service.ServicePath, service.TargetHost), nil)
 	}
 
 	return nil

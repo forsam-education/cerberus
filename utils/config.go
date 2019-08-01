@@ -14,7 +14,13 @@ const (
 	// ProxyServerHost is the host name for the Cerberus reverse proxy.
 	ProxyServerHost = "http.proxy.host"
 	// ProxyServerPort is the port for the Cerberus reverse proxy.
-	ProxyServerPort = "http.proxy.port"
+	ProxyServerPort            = "http.proxy.port"
+	// ProxyServerKeepAliveState allows to enable or diable HTTP Keep Alive on the Cerberus reverse proxy.
+	ProxyServerKeepAliveState  = "http.proxy.enable_keep_alive"
+	// ProxyServerKeepAlivePeriod is the period in seconds to leave Keep Alive connections open.
+	ProxyServerKeepAlivePeriod = "http.proxy.keep_alive_period"
+	// ProxyServerReadTimeout is the period in seconds without read before timing out connection.
+	ProxyServerReadTimeout     = "http.proxy.read_timeout"
 	// AdministrationServerHost is the host name for the Cerberus reverse proxy administration.
 	AdministrationServerHost = "http.administration.host"
 	// AdministrationServerPort is the port for the Cerberus reverse proxy administration.
@@ -54,6 +60,9 @@ func SetConfigDefaults(force bool) {
 	}
 	setConfig(ProxyServerHost, "127.0.0.1")
 	setConfig(ProxyServerPort, 8970)
+	setConfig(ProxyServerKeepAliveState, true)
+	setConfig(ProxyServerKeepAlivePeriod, 5)
+	setConfig(ProxyServerReadTimeout, 5)
 	setConfig(AdministrationServerHost, "127.0.0.1")
 	setConfig(AdministrationServerPort, 8971)
 	setConfig(DatabaseServerHost, "database")
