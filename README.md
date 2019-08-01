@@ -10,8 +10,11 @@ Cerberus is a simple yet powerful, modern and easily configurable reverse proxy 
 [![Go Report Card](https://goreportcard.com/badge/github.com/forsam-education/cerberus)](https://goreportcard.com/report/github.com/forsam-education/cerberus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_shield)
+![Version](https://img.shields.io/github/release/forsam-education/cerberus?label=alpha)
 
-# THIS PROJECT IS NOT WORKING ATM. WIP.
+## Disclaimer
+
+This project is in a very early work in progress stage.
 
 ## Quality assurance
 
