@@ -1,45 +1,107 @@
 package proxy
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"github.com/forsam-education/cerberus/errors"
+	"github.com/forsam-education/cerberus/models"
+	"github.com/forsam-education/cerberus/utils"
+	"github.com/valyala/fasthttp"
+	"net"
 	"strings"
-	"sync"
 )
 
-type routerSwapper struct {
-	mu     sync.Mutex
-	router *mux.Router
-}
+var proxyClient = &fasthttp.Client{}
 
-func (rs *routerSwapper) Swap(newRouter *mux.Router) {
-	rs.mu.Lock()
-	rs.router = newRouter
-	rs.mu.Unlock()
-}
-
-func (rs *routerSwapper) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	rs.mu.Lock()
-	router := rs.router
-	rs.mu.Unlock()
-	router.ServeHTTP(w, r)
-}
-
-// Swapper is the main HTTP handler with the capacity to swap mux.Router.
-var Swapper *routerSwapper
-
-// LoadRouter returns a new mux.Router from services and middlewares.
-func LoadRouter() *mux.Router {
-	// Initiate routes.
-	router := mux.NewRouter()
-	for _, middleware := range middlewares {
-		router.Use(middleware)
-	}
+func findServiceByPath(path []byte) *models.Service {
 	for _, service := range services {
-		router.HandleFunc(service.Path, func(writer http.ResponseWriter, request *http.Request) {
-			http.Redirect(writer, request, service.TargetURL, http.StatusMovedPermanently)
-		}).Methods(strings.Split(service.Methods, ",")...)
+		if bytes.Equal(path, []byte(service.ServicePath)) {
+			return service
+		}
 	}
 
-	return router
+	return nil
+}
+
+func buildRequestHost(service *models.Service) string {
+	if !service.TargetPort.Valid {
+		return service.TargetHost
+	}
+
+	return fmt.Sprintf("%s:%d", service.TargetHost, service.TargetPort.Uint)
+}
+
+func tranformRequestURI(path []byte, service *models.Service) []byte {
+	var newPath []byte
+	if service.TargetPath.Valid {
+		newPath = []byte(service.TargetPath.String)
+	} else {
+		newPath = []byte("/")
+	}
+	servicePathLength := len(getFirstPathPart(path))
+
+	newPath = append(newPath, path[servicePathLength:]...)
+
+	return newPath
+}
+
+func getFirstPathPart(path []byte) []byte {
+	tmpURI := []byte("/")
+	return append(tmpURI, bytes.Split(path[1:], []byte("/"))[0]...)
+}
+
+func proxify(ctx *fasthttp.RequestCtx) {
+	req := &ctx.Request
+	res := &ctx.Response
+
+	path := ctx.Path()
+	method := ctx.Method()
+
+	service := findServiceByPath(getFirstPathPart(path))
+
+	// No service for this path.
+	if service == nil {
+		handleServiceNotFound(ctx)
+		return
+	}
+
+	// Method not allowed for this service.
+	if !strings.Contains(service.Methods, string(method)) {
+		handleMethodNotAllowed(ctx)
+		return
+	}
+
+	// Replace service path with target path in request.
+	req.URI().SetPathBytes(tranformRequestURI(path, service))
+
+	if clientIP, _, err := net.SplitHostPort(ctx.RemoteAddr().String()); err == nil {
+		req.Header.Add(utils.HeaderXForwardedFor, clientIP)
+	}
+
+	// Set host to service host and port.
+	req.SetHost(buildRequestHost(service))
+
+	// Send request the the service and set response to the service response.
+	if err := proxyClient.Do(req, res); err != nil {
+		return
+	}
+}
+
+func handleServiceNotFound(ctx *fasthttp.RequestCtx) {
+	ctx.Response.Reset()
+	ctx.Response.SetStatusCode(fasthttp.StatusNotFound)
+	ctx.Response.Header.Set(utils.HeaderContentType, "application/json; charset=utf-8")
+	response := errors.BuildErrorResponseBody(errors.ServiceNotFound, string(getFirstPathPart(ctx.Path())), nil)
+	encodedResponse, _ := json.Marshal(response)
+	ctx.Response.SetBody(encodedResponse)
+}
+
+func handleMethodNotAllowed(ctx *fasthttp.RequestCtx) {
+	ctx.Response.Reset()
+	ctx.Response.SetStatusCode(fasthttp.StatusMethodNotAllowed)
+	ctx.Response.Header.Set(utils.HeaderContentType, "application/json; charset=utf-8")
+	response := errors.BuildErrorResponseBody(errors.MethodNotAllowed, string(getFirstPathPart(ctx.Path())), utils.ResponseExtraData{"method": string(ctx.Method())})
+	encodedResponse, _ := json.Marshal(response)
+	ctx.Response.SetBody(encodedResponse)
 }

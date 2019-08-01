@@ -40,7 +40,7 @@ func CreateService(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	proxy.Swapper.Swap(proxy.LoadRouter())
+	//proxy.Swapper.Swap(proxy.LoadRouter())
 
 	w.WriteHeader(http.StatusCreated)
 

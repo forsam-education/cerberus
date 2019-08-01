@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
+	"github.com/volatiletech/null"
 	"github.com/volatiletech/sqlboiler/boil"
 	"github.com/volatiletech/sqlboiler/queries"
 	"github.com/volatiletech/sqlboiler/queries/qm"
@@ -22,12 +23,14 @@ import (
 
 // Service is an object representing the database table.
 type Service struct {
-	ID          uint   `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name        string `boil:"name" json:"name" toml:"name" yaml:"name"`
-	Description string `boil:"description" json:"description" toml:"description" yaml:"description"`
-	Path        string `boil:"path" json:"path" toml:"path" yaml:"path"`
-	TargetURL   string `boil:"target_url" json:"target_url" toml:"target_url" yaml:"target_url"`
-	Methods     string `boil:"methods" json:"methods" toml:"methods" yaml:"methods"`
+	ID          uint        `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name        string      `boil:"name" json:"name" toml:"name" yaml:"name"`
+	Description string      `boil:"description" json:"description" toml:"description" yaml:"description"`
+	ServicePath string      `boil:"service_path" json:"service_path" toml:"service_path" yaml:"service_path"`
+	TargetHost  string      `boil:"target_host" json:"target_host" toml:"target_host" yaml:"target_host"`
+	TargetPath  null.String `boil:"target_path" json:"target_path,omitempty" toml:"target_path" yaml:"target_path,omitempty"`
+	TargetPort  null.Uint   `boil:"target_port" json:"target_port,omitempty" toml:"target_port" yaml:"target_port,omitempty"`
+	Methods     string      `boil:"methods" json:"methods" toml:"methods" yaml:"methods"`
 
 	R *serviceR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L serviceL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -37,15 +40,19 @@ var ServiceColumns = struct {
 	ID          string
 	Name        string
 	Description string
-	Path        string
-	TargetURL   string
+	ServicePath string
+	TargetHost  string
+	TargetPath  string
+	TargetPort  string
 	Methods     string
 }{
 	ID:          "id",
 	Name:        "name",
 	Description: "description",
-	Path:        "path",
-	TargetURL:   "target_url",
+	ServicePath: "service_path",
+	TargetHost:  "target_host",
+	TargetPath:  "target_path",
+	TargetPort:  "target_port",
 	Methods:     "methods",
 }
 
@@ -69,19 +76,69 @@ func (w whereHelperstring) LTE(x string) qm.QueryMod { return qmhelper.Where(w.f
 func (w whereHelperstring) GT(x string) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.GT, x) }
 func (w whereHelperstring) GTE(x string) qm.QueryMod { return qmhelper.Where(w.field, qmhelper.GTE, x) }
 
+type whereHelpernull_String struct{ field string }
+
+func (w whereHelpernull_String) EQ(x null.String) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, false, x)
+}
+func (w whereHelpernull_String) NEQ(x null.String) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, true, x)
+}
+func (w whereHelpernull_String) IsNull() qm.QueryMod    { return qmhelper.WhereIsNull(w.field) }
+func (w whereHelpernull_String) IsNotNull() qm.QueryMod { return qmhelper.WhereIsNotNull(w.field) }
+func (w whereHelpernull_String) LT(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LT, x)
+}
+func (w whereHelpernull_String) LTE(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LTE, x)
+}
+func (w whereHelpernull_String) GT(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GT, x)
+}
+func (w whereHelpernull_String) GTE(x null.String) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GTE, x)
+}
+
+type whereHelpernull_Uint struct{ field string }
+
+func (w whereHelpernull_Uint) EQ(x null.Uint) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, false, x)
+}
+func (w whereHelpernull_Uint) NEQ(x null.Uint) qm.QueryMod {
+	return qmhelper.WhereNullEQ(w.field, true, x)
+}
+func (w whereHelpernull_Uint) IsNull() qm.QueryMod    { return qmhelper.WhereIsNull(w.field) }
+func (w whereHelpernull_Uint) IsNotNull() qm.QueryMod { return qmhelper.WhereIsNotNull(w.field) }
+func (w whereHelpernull_Uint) LT(x null.Uint) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LT, x)
+}
+func (w whereHelpernull_Uint) LTE(x null.Uint) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.LTE, x)
+}
+func (w whereHelpernull_Uint) GT(x null.Uint) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GT, x)
+}
+func (w whereHelpernull_Uint) GTE(x null.Uint) qm.QueryMod {
+	return qmhelper.Where(w.field, qmhelper.GTE, x)
+}
+
 var ServiceWhere = struct {
 	ID          whereHelperuint
 	Name        whereHelperstring
 	Description whereHelperstring
-	Path        whereHelperstring
-	TargetURL   whereHelperstring
+	ServicePath whereHelperstring
+	TargetHost  whereHelperstring
+	TargetPath  whereHelpernull_String
+	TargetPort  whereHelpernull_Uint
 	Methods     whereHelperstring
 }{
 	ID:          whereHelperuint{field: "`service`.`id`"},
 	Name:        whereHelperstring{field: "`service`.`name`"},
 	Description: whereHelperstring{field: "`service`.`description`"},
-	Path:        whereHelperstring{field: "`service`.`path`"},
-	TargetURL:   whereHelperstring{field: "`service`.`target_url`"},
+	ServicePath: whereHelperstring{field: "`service`.`service_path`"},
+	TargetHost:  whereHelperstring{field: "`service`.`target_host`"},
+	TargetPath:  whereHelpernull_String{field: "`service`.`target_path`"},
+	TargetPort:  whereHelpernull_Uint{field: "`service`.`target_port`"},
 	Methods:     whereHelperstring{field: "`service`.`methods`"},
 }
 
@@ -102,8 +159,8 @@ func (*serviceR) NewStruct() *serviceR {
 type serviceL struct{}
 
 var (
-	serviceAllColumns            = []string{"id", "name", "description", "path", "target_url", "methods"}
-	serviceColumnsWithoutDefault = []string{"name", "description", "path", "target_url", "methods"}
+	serviceAllColumns            = []string{"id", "name", "description", "service_path", "target_host", "target_path", "target_port", "methods"}
+	serviceColumnsWithoutDefault = []string{"name", "description", "service_path", "target_host", "target_path", "target_port", "methods"}
 	serviceColumnsWithDefault    = []string{"id"}
 	servicePrimaryKeyColumns     = []string{"id"}
 )

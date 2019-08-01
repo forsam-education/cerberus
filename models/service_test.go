@@ -552,7 +552,7 @@ func testServicesSelect(t *testing.T) {
 }
 
 var (
-	serviceDBTypes = map[string]string{`ID`: `int`, `Name`: `varchar`, `Description`: `text`, `Path`: `varchar`, `TargetURL`: `varchar`, `Methods`: `set`}
+	serviceDBTypes = map[string]string{`ID`: `int`, `Name`: `varchar`, `Description`: `text`, `ServicePath`: `varchar`, `TargetHost`: `varchar`, `TargetPath`: `varchar`, `TargetPort`: `int`, `Methods`: `set`}
 	_              = bytes.MinRead
 )
 
