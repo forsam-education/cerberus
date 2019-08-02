@@ -44,6 +44,11 @@ func (manager *StateManager) RemoveRequest() error {
 	return manager.RedisClient.Decr(CurrentRequestsCount).Err()
 }
 
+// GetAndResetRequestCount performs a getset on the manager to get the request count and reset it to 0 in an atomic operation.
+func (manager *StateManager) GetAndResetRequestCount() (int, error) {
+	return manager.RedisClient.GetSet(CurrentRequestsCount, 0).Int()
+}
+
 // GetCurrentNodesCount fetches the cerberus nodes from the shared manager.
 func (manager *StateManager) GetCurrentNodesCount() (int, error) {
 	return manager.RedisClient.Get(CurrentNodesCount).Int()
