@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"github.com/go-redis/redis"
+	"time"
 )
 
 const (
@@ -10,12 +11,17 @@ const (
 	CurrentNodesCount = "nodecount"
 	// CurrentRequestsCount is the redis key for current Cerberus proxy request count.
 	CurrentRequestsCount = "requestcount"
+	// LeaderLock is the lock to get leadership.
+	LeaderLock = "leaderlock"
 )
+
+var IsLeaderNode = false
 
 // StateManager is the state manager type for Cerberus.
 type StateManager struct {
 	RedisClient *redis.Client
 	Registered  bool
+	LeaderId    string
 }
 
 // SharedStateManager is the shared state manager for Cerberus.
@@ -97,4 +103,24 @@ func (manager *StateManager) SetDefaultRedisState() error {
 	Logger.Info("Successfully set default Redis state.", nil)
 
 	return nil
+}
+
+// TryToAcquireLead tries to acquire a lock in the Redis DB.
+func (manager *StateManager) TryToAcquireLead() bool {
+	wasUnset, err := manager.RedisClient.SetNX(LeaderLock, manager.LeaderId, 10*time.Second).Result()
+	if err != nil {
+		IsLeaderNode = false
+		return IsLeaderNode
+	}
+	lockId, err := manager.RedisClient.Get(LeaderLock).Result()
+	if err != nil || lockId != manager.LeaderId {
+		IsLeaderNode = false
+		return IsLeaderNode
+	}
+	if !wasUnset {
+		manager.RedisClient.Expire(LeaderLock, 10*time.Second)
+	}
+
+	IsLeaderNode = true
+	return IsLeaderNode
 }
