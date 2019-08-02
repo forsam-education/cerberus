@@ -49,16 +49,16 @@ func InitManager() error {
 		return err
 	}
 
-	nodeId, err := uuid.NewV4()
+	nodeID, err := uuid.NewV4()
 	if err != nil {
 		return err
 	}
-	nodeIdString := nodeId.String()
-	utils.Logger.Info(fmt.Sprintf("Node ID: %s", nodeIdString), nil)
+	nodeIDString := nodeID.String()
+	utils.Logger.Info(fmt.Sprintf("Node ID: %s", nodeIDString), nil)
 
 	utils.SharedStateManager = &utils.StateManager{
 		RedisClient: redisClient,
-		LeaderId:    nodeIdString,
+		LeaderID:    nodeIDString,
 	}
 
 	if !utils.SharedStateManager.IsRedisInitialized() {
