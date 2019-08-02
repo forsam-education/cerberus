@@ -20,9 +20,10 @@ var IsLeaderNode = false
 
 // StateManager is the state manager type for Cerberus.
 type StateManager struct {
-	RedisClient *redis.Client
-	Registered  bool
-	LeaderID    string
+	RedisClient           *redis.Client
+	Registered            bool
+	LeaderID              string
+	LeaderLockRefreshTime time.Duration
 }
 
 // SharedStateManager is the shared state manager for Cerberus.
@@ -106,9 +107,9 @@ func (manager *StateManager) SetDefaultRedisState() error {
 	return nil
 }
 
-// TryToAcquireLead tries to acquire a lock in the Redis DB.
+// TryToAcquireLead tries to acquire a lock in the Redis DB and set the leader status accordingly.
 func (manager *StateManager) TryToAcquireLead() bool {
-	wasUnset, err := manager.RedisClient.SetNX(LeaderLock, manager.LeaderID, 10*time.Second).Result()
+	wasUnset, err := manager.RedisClient.SetNX(LeaderLock, manager.LeaderID, manager.LeaderLockRefreshTime).Result()
 	if err != nil {
 		IsLeaderNode = false
 		return IsLeaderNode
@@ -119,7 +120,7 @@ func (manager *StateManager) TryToAcquireLead() bool {
 		return IsLeaderNode
 	}
 	if !wasUnset {
-		manager.RedisClient.Expire(LeaderLock, 10*time.Second)
+		manager.RedisClient.Expire(LeaderLock, manager.LeaderLockRefreshTime)
 	}
 
 	IsLeaderNode = true

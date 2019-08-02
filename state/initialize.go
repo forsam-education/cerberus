@@ -26,7 +26,7 @@ func startLeadProcess() {
 				utils.Logger.Info("Node is now a worker.", nil)
 			}
 		}
-		time.Sleep(8 * time.Second)
+		time.Sleep(viper.GetDuration(utils.RedisLeaderLockRefreshTime)*time.Second - 2*time.Second)
 	}
 }
 
@@ -57,8 +57,9 @@ func InitManager() error {
 	utils.Logger.Info(fmt.Sprintf("Node ID: %s", nodeIDString), nil)
 
 	utils.SharedStateManager = &utils.StateManager{
-		RedisClient: redisClient,
-		LeaderID:    nodeIDString,
+		RedisClient:           redisClient,
+		LeaderID:              nodeIDString,
+		LeaderLockRefreshTime: viper.GetDuration(utils.RedisLeaderLockRefreshTime) * time.Second,
 	}
 
 	if !utils.SharedStateManager.IsRedisInitialized() {

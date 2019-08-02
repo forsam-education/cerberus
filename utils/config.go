@@ -43,6 +43,8 @@ const (
 	RedisServerDBID = "redis.dbid"
 	// RedisServerPass is the password for the the Cerberus Redis server.
 	RedisServerPass = "redis.pass"
+	// RedisLeaderLockRefreshTime is the time in seconds between lock re-acquire and refresh.
+	RedisLeaderLockRefreshTime = "redis.leader_lock_refresh_time"
 	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
 	PasswordHashCost = "misc.password_hash_cost"
 )
@@ -82,6 +84,7 @@ func SetConfigDefaults(force bool) {
 	setConfig(RedisServerPort, 6379)
 	setConfig(RedisServerPass, "")
 	setConfig(RedisServerDBID, 0)
+	setConfig(RedisLeaderLockRefreshTime, 0)
 	setConfig(PasswordHashCost, 15)
 }
 
