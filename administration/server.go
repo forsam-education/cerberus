@@ -36,7 +36,6 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	for _, route := range apiRoutes {
 		apiRouter.Handle(route.Path, route.Handler).Methods(route.Methods...)
 	}
-	router.PathPrefix("/").Handler(frontAppServer)
 
 	server := &http.Server{
 		Handler:      router,

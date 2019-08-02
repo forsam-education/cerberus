@@ -1,7 +1,6 @@
 package proxy
 
 import (
-	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/gofrs/uuid"
 	"net/http"
