@@ -1,7 +1,6 @@
 package proxy
 
 import (
-	"context"
 	"fmt"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/spf13/viper"
@@ -16,7 +15,7 @@ import (
 )
 
 // StartServer launches the reverse proxy main http server.
-func StartServer(_ context.Context, group *sync.WaitGroup) {
+func StartServer(group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.ProxyServerHost), viper.GetInt(utils.ProxyServerPort))
 
 	// Catch interrupt signal in channel.
