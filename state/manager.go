@@ -1,7 +1,8 @@
-package utils
+package state
 
 import (
 	"fmt"
+	"github.com/forsam-education/cerberus/utils"
 	"github.com/go-redis/redis"
 	"time"
 )
@@ -15,47 +16,44 @@ const (
 	LeaderLock = "leaderlock"
 )
 
-// IsLeaderNode stores the leading state of the node.
-var IsLeaderNode = false
+// Manager is the state manager for Cerberus.
+var Manager *manager
 
-// StateManager is the state manager type for Cerberus.
-type StateManager struct {
+type manager struct {
 	RedisClient           *redis.Client
 	Registered            bool
 	LeaderID              string
 	LeaderLockRefreshTime time.Duration
+	IsLeaderNode          bool
 }
 
-// SharedStateManager is the shared state manager for Cerberus.
-var SharedStateManager *StateManager
-
 // GetCurrentRequestsCount fetches the current proxy request from the shared manager.
-func (manager *StateManager) GetCurrentRequestsCount() (int, error) {
+func (manager *manager) GetCurrentRequestsCount() (int, error) {
 	return manager.RedisClient.Get(CurrentRequestsCount).Int()
 }
 
 // AddRequest adds a request to the current request count in the shared manager.
-func (manager *StateManager) AddRequest() error {
+func (manager *manager) AddRequest() error {
 	return manager.RedisClient.Incr(CurrentRequestsCount).Err()
 }
 
 // RemoveRequest removes a request from the current request count in the shared manager.
-func (manager *StateManager) RemoveRequest() error {
+func (manager *manager) RemoveRequest() error {
 	return manager.RedisClient.Decr(CurrentRequestsCount).Err()
 }
 
 // GetAndResetRequestCount performs a getset on the manager to get the request count and reset it to 0 in an atomic operation.
-func (manager *StateManager) GetAndResetRequestCount() (int, error) {
+func (manager *manager) GetAndResetRequestCount() (int, error) {
 	return manager.RedisClient.GetSet(CurrentRequestsCount, 0).Int()
 }
 
 // GetCurrentNodesCount fetches the cerberus nodes from the shared manager.
-func (manager *StateManager) GetCurrentNodesCount() (int, error) {
+func (manager *manager) GetCurrentNodesCount() (int, error) {
 	return manager.RedisClient.Get(CurrentNodesCount).Int()
 }
 
 // AddNode registers the current node in the shared manager.
-func (manager *StateManager) AddNode() error {
+func (manager *manager) AddNode() error {
 	if err := manager.RedisClient.Incr(CurrentNodesCount).Err(); err != nil {
 		return err
 	}
@@ -65,7 +63,7 @@ func (manager *StateManager) AddNode() error {
 }
 
 // RemoveNode deregisters the current node the shared manager.
-func (manager *StateManager) RemoveNode() error {
+func (manager *manager) RemoveNode() error {
 	if err := manager.RedisClient.Decr(CurrentNodesCount).Err(); err != nil {
 		return err
 	}
@@ -75,7 +73,7 @@ func (manager *StateManager) RemoveNode() error {
 }
 
 // Shutdown checks if the node is registers and deregisters it from the shared manager.
-func (manager *StateManager) Shutdown() error {
+func (manager *manager) Shutdown() error {
 	if !manager.Registered {
 		return nil
 	}
@@ -83,51 +81,51 @@ func (manager *StateManager) Shutdown() error {
 		return fmt.Errorf("can't deregister node from Redis: %s", err.Error())
 	}
 
-	Logger.Info("Successfully deregistered node from Redis.", nil)
+	utils.Logger.Info("Successfully deregistered node from Redis.", nil)
 
 	return nil
 }
 
 // IsRedisInitialized checks if there is any node in the cerberus cluster.
-func (manager *StateManager) IsRedisInitialized() bool {
+func (manager *manager) IsRedisInitialized() bool {
 	count, _ := manager.GetCurrentNodesCount()
 
 	return count > 0
 }
 
 // SetDefaultRedisState sets the default state in the shared manager and registers the current node.
-func (manager *StateManager) SetDefaultRedisState() error {
+func (manager *manager) SetDefaultRedisState() error {
 	// Add current node
-	if err := SharedStateManager.AddNode(); err != nil {
+	if err := manager.AddNode(); err != nil {
 		return err
 	}
-	Logger.Info("Successfully registered node into Redis.", nil)
+	utils.Logger.Info("Successfully registered node into Redis.", nil)
 
 	// Set current request count to 0
-	if err := SharedStateManager.RedisClient.Set(CurrentRequestsCount, 0, 0).Err(); err != nil {
+	if err := manager.RedisClient.Set(CurrentRequestsCount, 0, 0).Err(); err != nil {
 		return err
 	}
-	Logger.Info("Successfully set default Redis state.", nil)
+	utils.Logger.Info("Successfully set default Redis state.", nil)
 
 	return nil
 }
 
 // TryToAcquireLead tries to acquire a lock in the Redis DB and set the leader status accordingly.
-func (manager *StateManager) TryToAcquireLead() bool {
+func (manager *manager) TryToAcquireLead() bool {
 	wasUnset, err := manager.RedisClient.SetNX(LeaderLock, manager.LeaderID, manager.LeaderLockRefreshTime).Result()
 	if err != nil {
-		IsLeaderNode = false
-		return IsLeaderNode
+		manager.IsLeaderNode = false
+		return manager.IsLeaderNode
 	}
 	lockID, err := manager.RedisClient.Get(LeaderLock).Result()
 	if err != nil || lockID != manager.LeaderID {
-		IsLeaderNode = false
-		return IsLeaderNode
+		manager.IsLeaderNode = false
+		return manager.IsLeaderNode
 	}
 	if !wasUnset {
 		manager.RedisClient.Expire(LeaderLock, manager.LeaderLockRefreshTime)
 	}
 
-	IsLeaderNode = true
-	return IsLeaderNode
+	manager.IsLeaderNode = true
+	return manager.IsLeaderNode
 }

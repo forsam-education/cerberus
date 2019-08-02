@@ -6,7 +6,6 @@ import (
 	"github.com/spf13/viper"
 	"github.com/valyala/fasthttp"
 	"github.com/valyala/fasthttp/reuseport"
-	"net/http"
 	"os"
 	"os/signal"
 	"sync"
@@ -40,8 +39,9 @@ func StartServer(group *sync.WaitGroup) {
 	go func() {
 		utils.Logger.Info(fmt.Sprintf("Proxy server listening on http://%s...", host), nil)
 
-		if err := server.Serve(ln); err != nil && err != http.ErrServerClosed {
-			utils.LogAndForceExit(err)
+		if err := server.Serve(ln); err != nil {
+			utils.Logger.StdErrorCritical(err, nil)
+			os.Exit(1)
 		}
 	}()
 

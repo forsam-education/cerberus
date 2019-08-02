@@ -48,7 +48,8 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 		utils.Logger.Info(fmt.Sprintf("Administration server listening on http://%s...", host), nil)
 
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			utils.LogAndForceExit(err)
+			utils.Logger.StdErrorCritical(err, nil)
+			os.Exit(1)
 		}
 	}()
 

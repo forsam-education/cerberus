@@ -13,27 +13,6 @@ import (
 	"time"
 )
 
-func tryToGetLead() {
-	wasLeader := utils.IsLeaderNode
-	isLeader := utils.SharedStateManager.TryToAcquireLead()
-	if isLeader {
-		if !wasLeader {
-			utils.Logger.Info("Node is the leader.", nil)
-		}
-	} else {
-		if wasLeader {
-			utils.Logger.Info("Node is now a worker.", nil)
-		}
-	}
-}
-
-func startLeadProcess() {
-	for {
-		tryToGetLead()
-		time.Sleep(viper.GetDuration(utils.LeaderLockRefreshTime)*time.Second - 2*time.Second)
-	}
-}
-
 // InitManager connects to redis and setup the state manager.
 func InitManager() error {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.RedisServerHost), viper.GetInt(utils.RedisServerPort))
@@ -60,28 +39,28 @@ func InitManager() error {
 	nodeIDString := nodeID.String()
 	utils.Logger.Info(fmt.Sprintf("Node ID: %s", nodeIDString), nil)
 
-	utils.SharedStateManager = &utils.StateManager{
+	Manager = &manager{
 		RedisClient:           redisClient,
 		LeaderID:              nodeIDString,
 		LeaderLockRefreshTime: viper.GetDuration(utils.LeaderLockRefreshTime) * time.Second,
 	}
 
-	if !utils.SharedStateManager.IsRedisInitialized() {
-		err := utils.SharedStateManager.SetDefaultRedisState()
+	if !Manager.IsRedisInitialized() {
+		err := Manager.SetDefaultRedisState()
 		if err == nil {
-			go startLeadProcess()
+			go leaderRoutine()
 		}
 
 		return err
 	}
-	err = utils.SharedStateManager.AddNode()
+	err = Manager.AddNode()
 	if err != nil {
 		return err
 	}
 	utils.Logger.Info("Successfully registered node into Redis.", nil)
 
 	tryToGetLead()
-	go startLeadProcess()
+	go leaderRoutine()
 
 	return nil
 }

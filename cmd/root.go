@@ -43,7 +43,7 @@ func initConfig() {
 	} else {
 		home, err := homedir.Dir()
 		if err != nil {
-			utils.LogAndForceExit(err)
+			utils.Logger.StdErrorCritical(err, nil)
 		}
 
 		utils.SetConfigDefaults(false)

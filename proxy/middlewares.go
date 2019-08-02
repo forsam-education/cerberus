@@ -1,7 +1,7 @@
 package proxy
 
 import (
-	"github.com/forsam-education/cerberus/utils"
+	"github.com/forsam-education/cerberus/state"
 	"github.com/gofrs/uuid"
 	"net/http"
 )
@@ -13,10 +13,10 @@ var middlewares = []func(next http.Handler) http.Handler{
 
 func connectionCounter(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		err := utils.SharedStateManager.AddRequest()
+		err := state.Manager.AddRequest()
 		next.ServeHTTP(w, r)
 		if err == nil {
-			_ = utils.SharedStateManager.RemoveRequest()
+			_ = state.Manager.RemoveRequest()
 		}
 	})
 }

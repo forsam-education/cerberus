@@ -10,6 +10,7 @@ import (
 	"github.com/volatiletech/sqlboiler/boil"
 	"golang.org/x/crypto/bcrypt"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 )
@@ -51,7 +52,8 @@ func generateFirstUser() error {
 func isFirstStart() bool {
 	count, err := models.Users().CountG()
 	if err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.StdErrorCritical(err, nil)
+		os.Exit(1)
 	}
 
 	return count < 1

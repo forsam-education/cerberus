@@ -52,10 +52,10 @@ require (
 	go.etcd.io/bbolt v1.3.3 // indirect
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 	golang.org/x/exp v0.0.0-20190731235908-ec7cb31e5a56 // indirect
-	golang.org/x/image v0.0.0-20190729225735-1bd0cf576493 // indirect
+	golang.org/x/image v0.0.0-20190802002840-cff245a6509b // indirect
 	golang.org/x/mobile v0.0.0-20190719004257-d2bd2a29d028 // indirect
 	golang.org/x/net v0.0.0-20190724013045-ca1201d0de80 // indirect
-	golang.org/x/tools v0.0.0-20190801205347-5f95ed5921ef // indirect
+	golang.org/x/tools v0.0.0-20190802200813-43c5e4ca5b10 // indirect
 	google.golang.org/genproto v0.0.0-20190801165951-fa694d86fc64 // indirect
 	google.golang.org/grpc v1.22.1 // indirect
 	gopkg.in/gorp.v1 v1.7.2 // indirect

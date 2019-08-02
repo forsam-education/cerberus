@@ -6,6 +6,7 @@ import (
 	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/volatiletech/sqlboiler/boil"
+	"os"
 	"sync"
 )
 
@@ -23,7 +24,7 @@ func handleDatabaseStartup() error {
 
 	boil.SetDB(db)
 
-	if utils.IsLeaderNode {
+	if state.Manager.IsLeaderNode {
 		if err = database.HandleFirstStart(); err != nil {
 			return err
 		}
@@ -36,16 +37,19 @@ func handleDatabaseStartup() error {
 func StartOrchestrator() {
 	err := state.InitManager()
 	if err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.StdErrorCritical(err, nil)
+		os.Exit(1)
 	}
 
 	err = handleDatabaseStartup()
 	if err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.StdErrorCritical(err, nil)
+		os.Exit(1)
 	}
 
 	if err = proxy.LoadServices(); err != nil {
-		utils.LogAndForceExit(err)
+		utils.Logger.StdErrorCritical(err, nil)
+		os.Exit(1)
 	}
 
 	var waitgroup sync.WaitGroup
@@ -60,8 +64,8 @@ func StartOrchestrator() {
 }
 
 func shutdownOrchestrator() {
-	if utils.SharedStateManager != nil {
-		if err := utils.SharedStateManager.Shutdown(); err != nil {
+	if state.Manager != nil {
+		if err := state.Manager.Shutdown(); err != nil {
 			utils.Logger.Critical(err.Error(), nil)
 		}
 	}
