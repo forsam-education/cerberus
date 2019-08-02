@@ -13,19 +13,23 @@ import (
 	"time"
 )
 
+func tryToGetLead() {
+	wasLeader := utils.IsLeaderNode
+	isLeader := utils.SharedStateManager.TryToAcquireLead()
+	if isLeader {
+		if !wasLeader {
+			utils.Logger.Info("Node is the leader.", nil)
+		}
+	} else {
+		if wasLeader {
+			utils.Logger.Info("Node is now a worker.", nil)
+		}
+	}
+}
+
 func startLeadProcess() {
 	for {
-		wasLeader := utils.IsLeaderNode
-		isLeader := utils.SharedStateManager.TryToAcquireLead()
-		if isLeader {
-			if !wasLeader {
-				utils.Logger.Info("Node is the leader.", nil)
-			}
-		} else {
-			if wasLeader {
-				utils.Logger.Info("Node is now a worker.", nil)
-			}
-		}
+		tryToGetLead()
 		time.Sleep(viper.GetDuration(utils.LeaderLockRefreshTime)*time.Second - 2*time.Second)
 	}
 }
@@ -76,6 +80,7 @@ func InitManager() error {
 	}
 	utils.Logger.Info("Successfully registered node into Redis.", nil)
 
+	tryToGetLead()
 	go startLeadProcess()
 
 	return nil

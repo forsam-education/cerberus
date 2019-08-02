@@ -10,8 +10,8 @@ import (
 
 var migrationBox *packr.Box
 
-// MigrateDatabase uses the migrations files to migrate database versions.
-func MigrateDatabase(db *sql.DB) error {
+// Migrate uses the migrations files to migrate database versions.
+func Migrate(db *sql.DB) error {
 	utils.Logger.Info("Checking for database migrations...", nil)
 	migrationBox = packr.New("migrations", "../migrations")
 	migrations := &migrate.PackrMigrationSource{

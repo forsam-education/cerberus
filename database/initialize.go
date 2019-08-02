@@ -1,6 +1,8 @@
 package database
 
 import (
+	"database/sql"
+	"errors"
 	"fmt"
 	"github.com/forsam-education/cerberus/models"
 	"github.com/forsam-education/cerberus/utils"
@@ -64,4 +66,33 @@ func HandleFirstStart() error {
 	utils.Logger.Info("Generating first admin user...", nil)
 
 	return generateFirstUser()
+}
+
+// Connect returns a database after initializing the connection and pinging the server.
+func Connect() (*sql.DB, error) {
+	dsn := buildDSN()
+
+	db, err := sql.Open("mysql", dsn)
+	if err != nil {
+		return nil, err
+	}
+
+	utils.Logger.Info("Connecting to database...", map[string]interface{}{"DSN": dsn})
+	var dbErr error
+	for i := 1; i <= 3; i++ {
+		dbErr = db.Ping()
+		if dbErr != nil {
+			utils.Logger.Info(fmt.Sprintf("Attempt #%d failed, will retry in 10 seconds", i), map[string]interface{}{"Error": dbErr})
+			time.Sleep(10 * time.Second)
+			continue
+		}
+
+		break
+	}
+
+	if dbErr != nil {
+		return nil, errors.New("can't connect to database after 3 attempts")
+	}
+
+	return db, nil
 }
