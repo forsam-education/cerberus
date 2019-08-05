@@ -35,6 +35,8 @@ github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8
 github.com/dgryski/go-sip13 v0.0.0-20190329191031-25c5027a8c7b/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/forsam-education/simplelogger v0.2.3 h1:b/mJP+43Qu4XvdADsRbXfo/YUe6Yxl8oJ65RXZA6K6E=
 github.com/forsam-education/simplelogger v0.2.3/go.mod h1:c989Hd0KCOKC2pJ4+qCcP2+tcbCQubKxy2LY2yE6Y8w=
+github.com/forsam-education/simplelogger v0.2.4 h1:jbTryJhnT9vqG2XdQCozKsbY00/OyCa/0ze4U3nWowE=
+github.com/forsam-education/simplelogger v0.2.4/go.mod h1:c989Hd0KCOKC2pJ4+qCcP2+tcbCQubKxy2LY2yE6Y8w=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
