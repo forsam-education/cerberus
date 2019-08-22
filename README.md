@@ -47,7 +47,7 @@ The dependendencies are automatically upgraded every Monday by Dependabot for bo
 We made a Docker image for the software, you can find it on [DockerHub](https://hub.docker.com/r/forsameducation/cerberus).
 It is a two-stages build process, and the final build is based on `scratch` so it is as small as possible.
 
-You can also find an example Docker Compose configuration file at `deployments/docker-compose.yml`.
+You can also find an example Docker Compose configuration file at `deployments/docker-compose.yml` and run it `docker-compose -f ./deployments/docker-compose.yml up`.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_large)

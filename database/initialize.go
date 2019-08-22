@@ -85,7 +85,9 @@ func Connect() (*sql.DB, error) {
 		dbErr = db.Ping()
 		if dbErr != nil {
 			utils.Logger.Info(fmt.Sprintf("Attempt #%d failed, will retry in 10 seconds", i), map[string]interface{}{"Error": dbErr})
-			time.Sleep(10 * time.Second)
+			if i < 3 {
+				time.Sleep(10 * time.Second)
+			}
 			continue
 		}
 

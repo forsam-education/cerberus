@@ -2,7 +2,8 @@ version: '3.7'
 
 services:
   database:
-    image: mysql:5.7
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
       - '3308:3306'
@@ -30,13 +31,22 @@ services:
     depends_on:
       - database
     environment:
-      CERBERUS_DATABASE_DBNAME: cerberus
-      CERBERUS_DATABASE_HOST: database
+      CERBERUS_DATABASE_DBNAME: "cerberus"
+      CERBERUS_DATABASE_HOST: "database"
       CERBERUS_DATABASE_PORT: 3306
-      CERBERUS_DATABASE_USER: cerberus
-      CERBERUS_DATABASE_PASS: cerberus
-      CERBERUS_HTTP_PROXY_HOST: 0.0.0.0
+      CERBERUS_DATABASE_USER: "cerberus"
+      CERBERUS_DATABASE_PASS: "cerberus"
+      CERBERUS_HTTP_PROXY_HOST: "0.0.0.0"
       CERBERUS_HTTP_PROXY_PORT: 8970
-      CERBERUS_HTTP_ADMINISTRATION_HOST: 0.0.0.0
+      CERBERUS_HTTP_PROXY_ENABLE_KEEP_ALIVE: "true"
+      CERBERUS_HTTP_PROXY_KEEP_ALIVE_PERIOD: 5
+      CERBERUS_HTTP_PROXY_READ_TIMEOUT: 5
+      CERBERUS_HTTP_ADMINISTRATION_HOST: "0.0.0.0"
       CERBERUS_HTTP_ADMINISTRATION_PORT: 8971
+      CERBERUS_LEADER_CACHE_REFRESH_TIME: 10
+      CERBERUS_LEADER_LOCK_REFRESH_TIME: 10
       CERBERUS_MISC_PASSWORD_HASH_COST: 14
+      CERBERUS_REDIS_DBID: 0
+      CERBERUS_REDIS_HOST: "redis"
+      CERBERUS_REDIS_PASS: ""
+      CERBERUS_REDIS_PORT: 6379
