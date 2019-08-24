@@ -1,14 +1,17 @@
 -- +migrate Up
 CREATE TABLE `service` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(130) NOT NULL DEFAULT '',
+  `name` varchar(130) NOT NULL,
   `description` text NOT NULL,
-  `path` varchar(30) NOT NULL DEFAULT '',
-  `target_url` varchar(250) NOT NULL DEFAULT '',
+  `service_path` varchar(30) NOT NULL,
+  `target_host` varchar(250) NOT NULL,
   `methods` set('GET','POST','PUT','HEAD','DELETE','TRACE','OPTIONS') NOT NULL,
+  `target_port` int(11) unsigned DEFAULT NULL,
+  `target_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `service_path_method` (`service_path`, `methods`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,7 +23,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- +migrate Down
 DROP TABLE `service`;
