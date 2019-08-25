@@ -52,8 +52,6 @@ func StartOrchestrator() {
 		os.Exit(1)
 	}
 
-	state.Manager.FindServiceByPath([]byte("/test"))
-
 	var waitgroup sync.WaitGroup
 	waitgroup.Add(1)
 
