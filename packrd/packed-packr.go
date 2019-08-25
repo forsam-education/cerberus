@@ -6,7 +6,6 @@
 package packrd
 
 import (
-	"github.com/gobuffalo/packr/v2"
 	"github.com/gobuffalo/packr/v2/file/resolver"
 )
 
@@ -23,7 +22,7 @@ var _ = func() error {
 
 	func() {
 		b := packr.New("migrations", "../migrations")
-		b.SetResolver("1_initial.sql", packr.Pointer{ForwardBox: gk, ForwardPath: "fe70bbc407ccb0442c7f530eb4eee7da"})
+		b.SetResolver("1_initial.sql", packr.Pointer{ForwardBox: gk, ForwardPath: "b6edf8d15fd9ca29fd9ce86f7bbede9c"})
 	}()
 
 	return nil
