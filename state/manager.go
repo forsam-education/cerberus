@@ -134,7 +134,7 @@ func (manager *manager) TryToAcquireLead() bool {
 }
 
 func (manager *manager) FindServiceByPath(path []byte) (*models.Service, error) {
-	var service *models.Service
+	var service models.Service
 	result, err := manager.RedisClient.Get(string(path)).Bytes()
 
 	if err != nil {
@@ -147,19 +147,19 @@ func (manager *manager) FindServiceByPath(path []byte) (*models.Service, error) 
 		return nil, err
 	}
 
-	err = json.Unmarshal(result, service)
+	err = json.Unmarshal(result, &service)
 	if err != nil {
 		return nil, err
 	}
 
-	return service, nil
+	return &service, nil
 }
 
 func (manager *manager) AddService(service *models.Service) error {
-	json, err := json.Marshal(service)
+	serialized, err := json.Marshal(service)
 	if err != nil {
 		return err
 	}
 
-	return manager.RedisClient.Set(service.ServicePath, string(json), viper.GetDuration(utils.RedisServerServiceTTL)*time.Minute).Err()
+	return manager.RedisClient.Set(service.ServicePath, string(serialized), viper.GetDuration(utils.RedisServerServiceTTL)*time.Minute).Err()
 }
