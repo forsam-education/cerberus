@@ -13,14 +13,13 @@ import (
 	"github.com/volatiletech/sqlboiler/queries/qm"
 	"net"
 	"strings"
-	"time"
 )
 
 var proxyClient = &fasthttp.Client{}
 
 func findServiceByPath(path []byte) *models.Service {
 	if service, ok := services[string(path)]; ok {
-		if service.ExpirationTime.After(time.Now()) {
+		if !service.IsExpired() {
 			return service.Service
 		}
 		delete(services, string(path))
@@ -46,10 +45,10 @@ func findServiceInRedis(path []byte) *models.Service {
 }
 
 func findServiceInDb(path []byte) *models.Service {
-	dbService, err := models.Services(qm.Where("service_path = ?", string(path))).OneG()
+	dbService, err := models.Services(qm.Where("service_path = ?", path)).OneG()
 	if err != nil {
 		if err != sql.ErrNoRows {
-			utils.Logger.StdErrorCritical(err, nil)
+			utils.Logger.StdError(err, nil)
 		}
 		return nil
 	}
