@@ -2,26 +2,65 @@ package proxy
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/forsam-education/cerberus/errors"
 	"github.com/forsam-education/cerberus/models"
+	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/valyala/fasthttp"
+	"github.com/volatiletech/sqlboiler/queries/qm"
 	"net"
 	"strings"
+	"time"
 )
 
 var proxyClient = &fasthttp.Client{}
 
 func findServiceByPath(path []byte) *models.Service {
-	for _, service := range services {
-		if bytes.Equal(path, []byte(service.ServicePath)) {
-			return service
+	if service, ok := services[string(path)]; ok {
+		if service.ExpirationTime.After(time.Now()) {
+			return service.Service
 		}
+		delete(services, string(path))
 	}
 
-	return nil
+	return findServiceInRedis(path)
+}
+
+func findServiceInRedis(path []byte) *models.Service {
+	redisService, err := state.Manager.FindServiceByPath(path)
+
+	if err != nil {
+		utils.Logger.StdErrorCritical(err, nil)
+		return nil
+	}
+
+	if redisService == nil {
+		return findServiceInDb(path)
+	}
+
+	cacheService(redisService)
+	return redisService
+}
+
+func findServiceInDb(path []byte) *models.Service {
+	dbService, err := models.Services(qm.Where("service_path = ?", string(path))).OneG()
+	if err != nil {
+		if err != sql.ErrNoRows {
+			utils.Logger.StdErrorCritical(err, nil)
+		}
+		return nil
+	}
+	err = state.Manager.AddService(dbService)
+	if err != nil {
+		utils.Logger.StdErrorCritical(err, nil)
+		return nil
+	}
+	cacheService(dbService)
+
+	return dbService
 }
 
 func buildRequestHost(service *models.Service) string {

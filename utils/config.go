@@ -43,12 +43,16 @@ const (
 	RedisServerDBID = "redis.dbid"
 	// RedisServerPass is the password for the the Cerberus Redis server.
 	RedisServerPass = "redis.pass"
+	// RedisServerServiceTTL is the maximum time in minutes a service can be cached in Redis server.
+	RedisServerServiceTTL = "redis.service_ttl"
 	// LeaderLockRefreshTime is the time in seconds between lock re-acquire and refresh.
 	LeaderLockRefreshTime = "leader.lock_refresh_time"
 	// LeaderCacheRefreshTime is the time in seconds between cache refresh from the leader node.
 	LeaderCacheRefreshTime = "leader.cache_refresh_time"
-	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt)
+	// PasswordHashCost is the cost of the password hashing algorithm (BCrypt).
 	PasswordHashCost = "misc.password_hash_cost"
+	// ServiceHotMemoryTTL is the maximum time in seconds a service can be cached in hot memory.
+	ServiceHotMemoryTTL = "misc.service_hot_memory_ttl"
 )
 
 // ASCIILogo is the ascii representation of the Athena logo
@@ -86,9 +90,11 @@ func SetConfigDefaults(force bool) {
 	setConfig(RedisServerPort, 6379)
 	setConfig(RedisServerPass, "")
 	setConfig(RedisServerDBID, 0)
+	setConfig(RedisServerServiceTTL, 120)
 	setConfig(LeaderLockRefreshTime, 10)
 	setConfig(LeaderCacheRefreshTime, 10)
 	setConfig(PasswordHashCost, 15)
+	setConfig(ServiceHotMemoryTTL, 30)
 }
 
 // WriteConfig replaces the config file by the current configuration.

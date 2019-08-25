@@ -1,9 +1,12 @@
 package state
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/forsam-education/cerberus/models"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/go-redis/redis"
+	"github.com/spf13/viper"
 	"time"
 )
 
@@ -128,4 +131,35 @@ func (manager *manager) TryToAcquireLead() bool {
 
 	manager.IsLeaderNode = true
 	return manager.IsLeaderNode
+}
+
+func (manager *manager) FindServiceByPath(path []byte) (*models.Service, error) {
+	var service *models.Service
+	result, err := manager.RedisClient.Get(string(path)).Bytes()
+
+	if err != nil {
+		// Weird behavior of Redis lib
+		// Nil result is considered as an untyped error, we must check for error message
+		// Also note that their Nil type is internal and this may change in the future
+		if err.Error() == "redis: nil" {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	err = json.Unmarshal(result, service)
+	if err != nil {
+		return nil, err
+	}
+
+	return service, nil
+}
+
+func (manager *manager) AddService(service *models.Service) error {
+	json, err := json.Marshal(service)
+	if err != nil {
+		return err
+	}
+
+	return manager.RedisClient.Set(service.ServicePath, string(json), viper.GetDuration(utils.RedisServerServiceTTL)*time.Minute).Err()
 }
