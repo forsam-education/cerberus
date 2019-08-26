@@ -1,4 +1,29 @@
-# Commit Convetion
+# Commit Convention
+
+## Branch Typology
+
+Branch name are composed as following :
+
+```md
+type/scope/purpose
+```
+
+For example, this add is of type doc, its scope is the commit, and its purpose is to explain how to name a branch.   
+As a result, the branch name is `docs/contrib/branch-naming`
+
+The purpose must be explicit and shouldn't lead to ask more questions that it is supposed to answer.
+
+### Allowed type :
+* **feat** : adding a new feature
+* **fix** : fixing a bug
+* **docs** : adding / fixing documentation
+
+### Allowed scope:
+* **api**
+* **proxy**
+* **contrib**
+
+## Commit Typology
 
 Make the changes to the code and tests and then commit to your branch. Be sure to follow the commit message conventions.
 
