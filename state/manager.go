@@ -163,3 +163,7 @@ func (manager *manager) AddService(service *models.Service) error {
 
 	return manager.RedisClient.Set(service.ServicePath, string(serialized), viper.GetDuration(utils.RedisServerServiceTTL)*time.Minute).Err()
 }
+
+func (manager *manager) RemoveService(service *models.Service) error {
+	return manager.RedisClient.Del(service.ServicePath).Err()
+}
