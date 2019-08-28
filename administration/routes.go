@@ -18,6 +18,11 @@ var apiRoutes = []utils.Route{
 		Handler: controllers.CreateService,
 	},
 	{
+		Path:    "/services",
+		Methods: []string{http.MethodPatch, http.MethodPut},
+		Handler: controllers.UpdateService,
+	},
+	{
 		Path:    "/status",
 		Methods: []string{http.MethodGet},
 		Handler: controllers.Status,
