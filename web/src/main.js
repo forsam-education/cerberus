@@ -5,7 +5,7 @@ import App from './components/App'
 import router from './router'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import 'bootstrap-css-only/css/bootstrap.min.css'
-import 'mdbvue/build/css/mdb.css'
+import 'mdbvue/lib/mdbvue.css'
 
 Vue.use(VueGoogleMaps, {
   load: {
