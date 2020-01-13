@@ -24,7 +24,7 @@ var _ = func() error {
 	func() {
 		b := packr.New("migrations", "../migrations")
 		b.SetResolver("1_initial.sql", packr.Pointer{ForwardBox: gk, ForwardPath: "d0ab4e31a2ec17dcbc5acaf26540c060"})
-	}()
+		}()
 
 	return nil
 }()
