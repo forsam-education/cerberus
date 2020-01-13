@@ -11,9 +11,6 @@ require (
 	github.com/gobuffalo/envy v1.8.1 // indirect
 	github.com/gobuffalo/logger v1.0.3 // indirect
 	github.com/gobuffalo/packr/v2 v2.7.1
-	github.com/go-redis/redis v6.15.2+incompatible
-	github.com/go-sql-driver/mysql v1.4.1
-	github.com/gobuffalo/packr/v2 v2.5.3
 	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/golang/protobuf v1.3.2 // indirect
 	github.com/gorilla/mux v1.7.3
@@ -28,13 +25,6 @@ require (
 	github.com/rubenv/sql-migrate v0.0.0-20191213152630-06338513c237
 	github.com/spf13/afero v1.2.2 // indirect
 	github.com/spf13/cast v1.3.1 // indirect
-	github.com/lib/pq v1.2.0 // indirect
-	github.com/mattn/go-sqlite3 v1.11.0 // indirect
-	github.com/mitchellh/go-homedir v1.1.0
-	github.com/onsi/ginkgo v1.9.0 // indirect
-	github.com/onsi/gomega v1.6.0 // indirect
-	github.com/pkg/errors v0.8.1
-	github.com/rubenv/sql-migrate v0.0.0-20190717103323-87ce952f7079
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
@@ -45,12 +35,7 @@ require (
 	github.com/volatiletech/sqlboiler v3.6.1+incompatible
 	golang.org/x/crypto v0.0.0-20200109152110-61a87790db17
 	golang.org/x/sys v0.0.0-20200107162124-548cf772de50 // indirect
-	golang.org/x/tools v0.0.0-20200110213125-a7a6caa82ab2 // indirect
 	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
 	gopkg.in/ini.v1 v1.51.1 // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
-	github.com/volatiletech/sqlboiler v3.4.0+incompatible
-	github.com/ziutek/mymysql v1.5.4 // indirect
-	golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586
-	gopkg.in/gorp.v1 v1.7.2 // indirect
 )
