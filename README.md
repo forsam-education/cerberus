@@ -20,7 +20,7 @@ This project is in a very early work in progress stage.
 
 Cerberus depends on some services to store both it's temporary and persistent state.
 
-The persistent state is stored in a MySQL 5.7 database, therefor you must have one available and set it properly in the configuration file.
+The persistent state is stored in a MySQL 8 database, therefor you must have one available and set it properly in the configuration file.
 
 For the temporary state storage (and sharing it between the different instances of Cerberus running in your stack), it uses a Redis server in it's fifth version.
 
