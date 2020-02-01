@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "bootstrap-css-only": "^4.3.1",
-    "mdbvue": "^6.2.0",
+    "mdbvue": "^6.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue2-google-maps": "^0.10.7"
