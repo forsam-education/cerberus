@@ -22,13 +22,17 @@ If you want to contribute to this project , you can read the [code of conduct](.
 
 You can also simply ask for features by creating issues.
 
-## Dependencies
+## Services Dependencies
 
 Cerberus depends on some services to store both it's temporary and persistent state.
 
 The persistent state is stored in a MySQL 8 database, therefor you must have one available and set it properly in the configuration file.
 
 For the temporary state storage (and sharing it between the different instances of Cerberus running in your stack), it uses a Redis server in it's fifth version.
+
+## FrontEnd
+
+To administrate Cerberus, a web interface is available in addition to the REST API. You can find it's source code under the `web` directory, and it's documentation in it's [README](./web/README.md).
 
 ## Quality assurance
 
