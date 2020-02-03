@@ -14,7 +14,13 @@ Cerberus is a simple yet powerful, modern and easily configurable reverse proxy 
 
 ## Disclaimer
 
-This project is in a very early work in progress stage.
+This project is in a very early work in progress state, do not use in production.
+
+## Contribute
+
+If you want to contribute to this project , you can read the [code of conduct](./CODE_OF_CONDUCT.md) and [conventions](./CONVENTION.md), also check the current issues, and open pull requests.
+
+You can also simply ask for features by creating issues.
 
 ## Dependencies
 
@@ -42,4 +48,5 @@ It is a two-stages build process, and the final build is based on `scratch` so i
 You can also find an example Docker Compose configuration file at `deployments/docker-compose.yml` and run it `docker-compose -f ./deployments/docker-compose.yml up`.
 
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fforsam-education%2Fcerberus?ref=badge_large)
