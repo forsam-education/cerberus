@@ -19,8 +19,8 @@ const router = new Router({
       component: Dashboard,
       props: { page: 1 },
       meta: {
-        title: 'Dashboard'
-      }
+        title: 'Dashboard',
+      },
     },
     {
       path: '/profile',
@@ -28,8 +28,8 @@ const router = new Router({
       props: { page: 2 },
       component: Profile,
       meta: {
-        title: 'Dashboard'
-      }
+        title: 'Dashboard',
+      },
     },
     {
       path: '/tables',
@@ -37,8 +37,8 @@ const router = new Router({
       props: { page: 3 },
       component: Tables,
       meta: {
-        title: 'Dashboard'
-      }
+        title: 'Dashboard',
+      },
     },
     {
       path: '/maps',
@@ -46,8 +46,8 @@ const router = new Router({
       props: { page: 4 },
       component: Maps,
       meta: {
-        title: 'Dashboard'
-      }
+        title: 'Dashboard',
+      },
     },
     {
       path: '*',
@@ -55,10 +55,10 @@ const router = new Router({
       props: { page: 5 },
       component: NotFound,
       meta: {
-        title: 'Dashboard'
-      }
-    }
-  ]
+        title: 'Dashboard',
+      },
+    },
+  ],
 });
 
 router.beforeEach((to, from, next) => {

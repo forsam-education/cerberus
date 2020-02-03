@@ -10,7 +10,7 @@
           </mdb-view>
           <mdb-card-body class="text-center">
             <GmapMap
-              :center="{lat:10, lng:10}"
+              :center="{ lat: 10, lng: 10 }"
               :zoom="7"
               style="width: 100%; height: 300px"
             >
@@ -27,7 +27,7 @@
           </mdb-view>
           <mdb-card-body class="text-center">
             <GmapMap
-              :center="{lat:10, lng:10}"
+              :center="{ lat: 10, lng: 10 }"
               :zoom="7"
               map-type-id="hybrid"
               style="width: 100%; height: 300px"
@@ -47,7 +47,7 @@
           </mdb-view>
           <mdb-card-body class="text-center">
             <GmapMap
-              :center="{lat:10, lng:10}"
+              :center="{ lat: 10, lng: 10 }"
               :zoom="7"
               map-type-id="satellite"
               style="width: 100%; height: 300px"
@@ -65,7 +65,7 @@
           </mdb-view>
           <mdb-card-body class="text-center">
             <GmapMap
-              :center="{lat:10, lng:10}"
+              :center="{ lat: 10, lng: 10 }"
               :zoom="7"
               map-type-id="terrain"
               style="width: 100%; height: 300px"
@@ -79,20 +79,20 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody } from "mdbvue";
+import { mdbRow, mdbCol, mdbCard, mdbView, mdbCardBody } from 'mdbvue';
 
 export default {
-  name: "Maps",
+  name: 'Maps',
   components: {
     mdbRow,
     mdbCol,
     mdbCard,
     mdbView,
-    mdbCardBody
+    mdbCardBody,
   },
-  data() {
+  data () {
     return {};
-  }
+  },
 };
 </script>
 

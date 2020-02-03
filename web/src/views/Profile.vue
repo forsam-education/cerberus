@@ -4,8 +4,12 @@
       <mdb-col md="3">
         <mdb-card cascade narrow>
           <mdb-view>
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="Project" class="img-fluid"/>
-            <mdb-mask overlay="white-slight" waves/>
+            <img
+              src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
+              alt="Project"
+              class="img-fluid"
+            />
+            <mdb-mask overlay="white-slight" waves />
           </mdb-view>
           <mdb-card-body class="text-center">
             <mdb-card-title class="font-bold mb-2">
@@ -17,7 +21,11 @@
             <h6 class="text-justify">
               <strong>About:</strong>
             </h6>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione perferendis quod animi dignissimos consectetur quibusdam numquam laboriosam, minus, provident...</p>
+            <p class="text-justify">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
+              perferendis quod animi dignissimos consectetur quibusdam numquam
+              laboriosam, minus, provident...
+            </p>
             <div class="text-right">
               <mdb-btn outline="primary" rounded size="sm">More...</mdb-btn>
             </div>
@@ -30,20 +38,27 @@
             <mdb-col lg="6" xl="5" class="mb-3">
               <mdb-card cascade narrow class="d-flex mb-5">
                 <mdb-view>
-                  <img src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-profile-page.jpg" alt="Project" class="img-fluid"/>
-                  <mdb-mask overlay="white-slight" waves/>
+                  <img
+                    src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-profile-page.jpg"
+                    alt="Project"
+                    class="img-fluid"
+                  />
+                  <mdb-mask overlay="white-slight" waves />
                 </mdb-view>
                 <mdb-card-body>
                   <mdb-card-title class="font-bold mb-3">
                     <strong>Project name</strong>
                   </mdb-card-title>
-                  <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</mdb-card-text>
+                  <mdb-card-text
+                    >Some quick example text to build on the card title and make
+                    up the bulk of the card's content.</mdb-card-text
+                  >
                 </mdb-card-body>
                 <mdb-card-footer class="links-light profile-card-footer">
                   <span class="right">
                     <a class="p-2" href="#profile">
                       Live Preview
-                      <mdb-icon icon="photo" class="ml-1"/>
+                      <mdb-icon icon="photo" class="ml-1" />
                     </a>
                   </span>
                 </mdb-card-footer>
@@ -52,20 +67,27 @@
             <mdb-col lg="6" xl="5" class="mb-3">
               <mdb-card cascade narrow class="d-flex mb-5">
                 <mdb-view>
-                  <img src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-signup.jpg" alt="Project" class="img-fluid"/>
-                  <mdb-mask overlay="white-slight" waves/>
+                  <img
+                    src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-signup.jpg"
+                    alt="Project"
+                    class="img-fluid"
+                  />
+                  <mdb-mask overlay="white-slight" waves />
                 </mdb-view>
                 <mdb-card-body>
                   <mdb-card-title class="font-bold mb-3">
                     <strong>Project name</strong>
                   </mdb-card-title>
-                  <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</mdb-card-text>
+                  <mdb-card-text
+                    >Some quick example text to build on the card title and make
+                    up the bulk of the card's content.</mdb-card-text
+                  >
                 </mdb-card-body>
                 <mdb-card-footer class="links-light profile-card-footer">
                   <span class="right">
                     <a class="p-2" href="#profile">
                       Live Preview
-                      <mdb-icon icon="photo" class="ml-1"/>
+                      <mdb-icon icon="photo" class="ml-1" />
                     </a>
                   </span>
                 </mdb-card-footer>
@@ -76,20 +98,27 @@
             <mdb-col lg="6" xl="5" class="mb-3">
               <mdb-card cascade narrow class="d-flex mb-5">
                 <mdb-view>
-                  <img src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-pricing.jpg" alt="Project" class="img-fluid"/>
-                  <mask overlay="white-slight" waves/>
+                  <img
+                    src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-pricing.jpg"
+                    alt="Project"
+                    class="img-fluid"
+                  />
+                  <mask overlay="white-slight" waves />
                 </mdb-view>
                 <mdb-card-body>
                   <mdb-card-title class="font-bold mb-3">
                     <strong>Project name</strong>
                   </mdb-card-title>
-                  <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</mdb-card-text>
+                  <mdb-card-text
+                    >Some quick example text to build on the card title and make
+                    up the bulk of the card's content.</mdb-card-text
+                  >
                 </mdb-card-body>
                 <mdb-card-footer class="links-light profile-card-footer">
                   <span class="right">
                     <a class="p-2" href="#profile">
                       Live Preview
-                      <mdb-icon icon="photo" class="ml-1"/>
+                      <mdb-icon icon="photo" class="ml-1" />
                     </a>
                   </span>
                 </mdb-card-footer>
@@ -98,20 +127,27 @@
             <mdb-col lg="6" xl="5" class="mb-3">
               <mdb-card cascade narrow class="d-flex mb-5">
                 <mdb-view>
-                  <img src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-landing.jpg" alt="Project" class="img-fluid"/>
-                  <mask overlay="white-slight" waves/>
+                  <img
+                    src="https://mdbootstrap.com/img/Mockups/Horizontal/6-col/pro-landing.jpg"
+                    alt="Project"
+                    class="img-fluid"
+                  />
+                  <mask overlay="white-slight" waves />
                 </mdb-view>
                 <mdb-card-body>
                   <mdb-card-title class="font-bold mb-3">
                     <strong>Project name</strong>
                   </mdb-card-title>
-                  <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</mdb-card-text>
+                  <mdb-card-text
+                    >Some quick example text to build on the card title and make
+                    up the bulk of the card's content.</mdb-card-text
+                  >
                 </mdb-card-body>
                 <mdb-card-footer class="links-light profile-card-footer">
                   <span class="right">
                     <a class="p-2" href="#profile">
                       Live Preview
-                      <mdb-icon icon="photo" class="ml-1"/>
+                      <mdb-icon icon="photo" class="ml-1" />
                     </a>
                   </span>
                 </mdb-card-footer>
@@ -154,11 +190,11 @@ import {
   mdbBtn,
   mdbPagination,
   mdbPageNav,
-  mdbPageItem
-} from "mdbvue";
+  mdbPageItem,
+} from 'mdbvue';
 
 export default {
-  name: "Profile",
+  name: 'Profile',
   components: {
     mdbRow,
     mdbCol,
@@ -173,11 +209,11 @@ export default {
     mdbBtn,
     mdbPagination,
     mdbPageNav,
-    mdbPageItem
+    mdbPageItem,
   },
-  data() {
+  data () {
     return {};
-  }
+  },
 };
 </script>
 

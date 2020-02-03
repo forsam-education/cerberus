@@ -16,25 +16,40 @@
     <!--/.Navbar-->
     <!-- Sidebar -->
     <div class="sidebar-fixed position-fixed">
-      <router-link to="/"><a class="logo-wrapper"><img alt="" class="img-fluid" src="@/assets/logo_360.png"></a></router-link>
+      <router-link to="/"
+        ><a class="logo-wrapper"
+          ><img alt="" class="img-fluid" src="@/assets/logo_360.png"/></a
+      ></router-link>
       <mdb-list-group class="list-group-flush">
         <router-link to="/" @click.native="activeItem = 1">
-          <mdb-list-group-item :action="true" :class="activeItem === 1 && 'active'">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 1 && 'active'"
+          >
             <mdb-icon icon="chart-pie" class="mr-3" />Dashboard
           </mdb-list-group-item>
         </router-link>
         <router-link to="/services" @click.native="activeItem = 3">
-          <mdb-list-group-item :action="true" :class="activeItem === 3 && 'active'">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 3 && 'active'"
+          >
             <mdb-icon icon="cogs" class="mr-3" />Services
           </mdb-list-group-item>
         </router-link>
         <router-link to="/maps" @click.native="activeItem = 4">
-          <mdb-list-group-item :action="true" :class="activeItem === 4 && 'active'">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 4 && 'active'"
+          >
             <mdb-icon icon="users" class="mr-3" />Users
           </mdb-list-group-item>
         </router-link>
         <router-link to="/profile" @click.native="activeItem = 2">
-          <mdb-list-group-item :action="true" :class="activeItem === 2 && 'active'">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 2 && 'active'"
+          >
             <mdb-icon icon="user" class="mr-3" /> My Account
           </mdb-list-group-item>
         </router-link>
@@ -47,7 +62,11 @@
       </div>
       <ftr color="primary-color-dark" class="text-center font-small darken-2">
         <p class="mb-0 py-3 text-center">
-          &copy; {{ new Date().getFullYear() }} Copyright: <a href="https://www.forsam.education"> ForSAM Education </a> <a href="https://github.com/forsam-education/cerberus"><mdb-icon fab icon="github" class="mr-3" /></a>
+          &copy; {{ new Date().getFullYear() }} Copyright:
+          <a href="https://www.forsam.education"> ForSAM Education </a>
+          <a href="https://github.com/forsam-education/cerberus"
+            ><mdb-icon fab icon="github" class="mr-3"
+          /></a>
         </p>
         <p class="footer-copyright mb-0 py-3 text-center">
           Template by <a href="https://mdbootstrap.com/"> MDBootstrap </a>
@@ -59,50 +78,40 @@
 
 <script>
 import {
-  mdbContainer,
   mdbNavbar,
   mdbNavbarBrand,
   mdbNavItem,
   mdbNavbarNav,
   mdbNavbarToggler,
-  mdbBtn,
   mdbIcon,
   mdbListGroup,
   mdbListGroupItem,
-  mdbCardBody,
   mdbFooter,
-  waves
-} from "mdbvue";
-import Dashboard from "@/views/Dashboard";
-import Profile from "@/views/Profile";
+  waves,
+} from 'mdbvue';
 
 export default {
-  name: "AdminTemplate",
+  name: 'AdminTemplate',
   components: {
-    mdbContainer,
     mdbNavbar,
     mdbNavbarBrand,
     mdbNavItem,
     mdbNavbarNav,
     mdbNavbarToggler,
-    mdbBtn,
     mdbListGroup,
     mdbListGroupItem,
     mdbIcon,
-    mdbCardBody,
     ftr: mdbFooter,
-    Dashboard,
-    Profile
   },
-  data() {
+  data () {
     return {
-      activeItem: 1
+      activeItem: 1,
     };
   },
-  beforeMount() {
+  beforeMount () {
     this.activeItem = this.$route.matched[0].props.default.page;
   },
-  mixins: [waves]
+  mixins: [waves],
 };
 </script>
 

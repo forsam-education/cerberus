@@ -3,12 +3,21 @@
     <div class="full">
       <mdb-row class="bad-gateway-row">
         <mdb-col md="8">
-          <img alt="Error 404" class="img-fluid" height="60px" src="../assets/logo_120.png"/>
+          <img
+            alt="Error 404"
+            class="img-fluid"
+            height="60px"
+            src="../assets/logo_120.png"
+          />
           <h2 class="h2-responsive mt-3 mb-2">404. That's an error.</h2>
           <h4>The requested URL was not found on this server.</h4>
         </mdb-col>
         <mdb-col md="4">
-          <img alt="Error 404" class="img-fluid" src="https://mdbootstrap.com/img/Others/grafika404-bf.png"/>
+          <img
+            alt="Error 404"
+            class="img-fluid"
+            src="https://mdbootstrap.com/img/Others/grafika404-bf.png"
+          />
         </mdb-col>
       </mdb-row>
     </div>
@@ -16,17 +25,17 @@
 </template>
 
 <script>
-import { mdbRow, mdbCol } from "mdbvue";
+import { mdbRow, mdbCol } from 'mdbvue';
 
 export default {
-  name: "NotFound",
+  name: 'NotFound',
   components: {
     mdbRow,
-    mdbCol
+    mdbCol,
   },
-  data() {
+  data () {
     return {};
-  }
+  },
 };
 </script>
 
