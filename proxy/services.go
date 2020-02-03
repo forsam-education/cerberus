@@ -32,7 +32,7 @@ func LoadServices() error {
 	}
 
 	for _, service := range rawServices {
-		utils.Logger.Info(fmt.Sprintf("%s - %s - %s", service.Name, service.ServicePath, service.TargetHost), nil)
+		utils.Logger.Info(fmt.Sprintf("Loaded service %s - %s - %s", service.Name, service.ServicePath, service.TargetHost), nil)
 		services[service.ServicePath] = MemoryCachedService{
 			Service:        service,
 			ExpirationTime: time.Now().Add(viper.GetDuration(utils.ServiceHotMemoryTTL) * time.Second),

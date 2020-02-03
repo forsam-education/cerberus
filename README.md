@@ -44,6 +44,12 @@ For a bit more advanced code style checks, you can run `golint $(go list ./... |
 
 The dependencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
 
+## Services caching flow
+
+This chart represents the flow to retrieve and cache a service when it is queried on the reverse proxy.
+
+![Cache Flow](./.github/caching_flow.svg)
+
 ## Docker
 
 We made a Docker image for the software, you can find it on [DockerHub](https://hub.docker.com/r/forsameducation/cerberus).
