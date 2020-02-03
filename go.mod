@@ -20,7 +20,7 @@ require (
 	github.com/onsi/ginkgo v1.11.0 // indirect
 	github.com/onsi/gomega v1.8.1 // indirect
 	github.com/pelletier/go-toml v1.6.0 // indirect
-	github.com/pkg/errors v0.9.0
+	github.com/pkg/errors v0.9.1
 	github.com/rogpeppe/go-internal v1.5.1 // indirect
 	github.com/rubenv/sql-migrate v0.0.0-20191213152630-06338513c237
 	github.com/spf13/afero v1.2.2 // indirect
