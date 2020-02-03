@@ -6,7 +6,7 @@ require (
 	github.com/DATA-DOG/go-sqlmock v1.4.0 // indirect
 	github.com/forsam-education/simplelogger v0.2.4
 	github.com/friendsofgo/errors v0.9.2 // indirect
-	github.com/go-redis/redis v6.15.6+incompatible
+	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gobuffalo/envy v1.8.1 // indirect
 	github.com/gobuffalo/logger v1.0.3 // indirect
