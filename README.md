@@ -38,7 +38,7 @@ For a bit more advanced code style checks, you can run `golint $(go list ./... |
 
 ## Dependencies upgrades
 
-The dependendencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
+The dependencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
 
 ## Docker
 
