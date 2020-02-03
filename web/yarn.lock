@@ -4713,10 +4713,10 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
-mdbvue@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.2.0.tgz#9ca0400c678f0f660fe3c8d36725d9be8c41c4b8"
-  integrity sha512-ovV0OLTGfuLqFqUyvA22L8k9oNbN7+xg4FMfZZLnTOmLLKjqXByi3v647AGD6SN2VAvNzfv0KdqpABK/EJittA==
+mdbvue@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.4.0.tgz#93affa086ee17d082b2adea152b02b5d5c61846c"
+  integrity sha512-aNWtNvck5SJR3lHtI9UflWWeKKaeydAAWsmEKbXPlJPBkrMWZCCQKaL+dX+NUvLpiacglyFgypHy9Za7T/jSrQ==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.11.2"
     axios "^0.19.0"
@@ -4725,15 +4725,14 @@ mdbvue@^6.2.0:
     core-js "^3.1.2"
     moment "^2.24.0"
     popper.js "^1.16.0"
-    vue "^2.6.10"
+    vue "^2.6.11"
     vue-chartjs "^3.4.2"
     vue-clickaway "^2.2.2"
     vue-numeric "^2.3.0"
     vue-plugin-load-script "^1.2.0"
-    vue-router "^3.0.3"
+    vue-router "^3.1.3"
     vue2-perfect-scrollbar "^1.2.1"
-    vue2-touch-events "^2.0.0"
-    vuex "^3.0.1"
+    vuex "^3.1.2"
 
 mdn-data@2.0.4:
   version "2.0.4"
@@ -7989,10 +7988,10 @@ vue-plugin-load-script@^1.2.0:
   resolved "https://registry.yarnpkg.com/vue-plugin-load-script/-/vue-plugin-load-script-1.2.0.tgz#d8cfb0ed68a78f67e24c6254d864f0c77aa80108"
   integrity sha512-QbWjZSFRToSP6S0nZFsH618PsTlZgSg8m8Xv602vezznLTHYd0wAXEw0jlYND7L6BMe0KcA7cvUwLROyfBlQ4w==
 
-vue-router@^3.0.3, vue-router@^3.0.6:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.3.tgz#e6b14fabc0c0ee9fda0e2cbbda74b350e28e412b"
-  integrity sha512-8iSa4mGNXBjyuSZFCCO4fiKfvzqk+mhL0lnKuGcQtO1eoj8nq3CmbEG8FwK5QqoqwDgsjsf1GDuisDX4cdb/aQ==
+vue-router@^3.0.6, vue-router@^3.1.3:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.5.tgz#ff29b8a1e1306c526b52d4dc0532109f16c41231"
+  integrity sha512-BszkPvhl7I9h334GjckCh7sVFyjTPMMJFJ4Bsrem/Ik+B/9gt5tgrk8k4gGLO4ZpdvciVdg7O41gW4DisQWurg==
 
 vue-style-loader@^3.0.1:
   version "3.1.2"
@@ -8040,17 +8039,12 @@ vue2-perfect-scrollbar@^1.2.1:
     perfect-scrollbar "^1.4.0"
     postcss-import "^12.0.0"
 
-vue2-touch-events@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue2-touch-events/-/vue2-touch-events-2.1.0.tgz#3d53e922ab1e65c5a6dcbc977c70f1fea368e821"
-  integrity sha512-RUoM0wB6xi5hbhIkngexREXrawX1jHup0sMFRb+WAWzT32cbjPBlRxDgk3pr0spBljyVXhwEjyqkLRRsMMi+VA==
-
-vue@^2.6.10:
+vue@^2.6.10, vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
-vuex@^3.0.1:
+vuex@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.2.tgz#a2863f4005aa73f2587e55c3fadf3f01f69c7d4d"
   integrity sha512-ha3jNLJqNhhrAemDXcmMJMKf1Zu4sybMPr9KxJIuOpVcsDQlTBYLLladav2U+g1AvdYDG5Gs0xBTb0M5pXXYFQ==
