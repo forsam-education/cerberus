@@ -7,7 +7,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// startCmd represents the config command.
 var startCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Starts the Cerberus reverse proxy.",

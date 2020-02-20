@@ -13,7 +13,7 @@ WORKDIR /go/src/cerberus
 COPY --from=frontbuilder /app /go/src/cerberus
 RUN go get -u github.com/gobuffalo/packr/v2/packr2
 RUN packr2
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o bin/cerberus ./main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o bin/cerberus ./main.go
 
 FROM scratch
 

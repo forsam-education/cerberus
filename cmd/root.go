@@ -32,7 +32,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cerberus/config.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.cerberus/config.yaml)")
 	rootCmd.PersistentFlags().BoolVarP(&utils.VerboseFlag, "verbose", "v", false, "Set cerberus to verbose mode")
 }
 
