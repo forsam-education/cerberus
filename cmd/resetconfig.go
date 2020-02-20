@@ -7,7 +7,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-// resetCmd represents the create command
 var resetCmd = &cobra.Command{
 	Use:   "reset-config",
 	Short: "Resets the configuration to default values. WARNING: WILL OVERWRITE YOUR CONFIGURATION FILE",
