@@ -4791,10 +4791,10 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
-mdbvue@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.4.0.tgz#93affa086ee17d082b2adea152b02b5d5c61846c"
-  integrity sha512-aNWtNvck5SJR3lHtI9UflWWeKKaeydAAWsmEKbXPlJPBkrMWZCCQKaL+dX+NUvLpiacglyFgypHy9Za7T/jSrQ==
+mdbvue@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/mdbvue/-/mdbvue-6.6.0.tgz#b190189eac91f5351309d75fcb4194c662b7c0a5"
+  integrity sha512-jL+ma4tUHMFzNCN5HhTwbDCkhaaF4ZS5gTVGfunhQw8ZKL6K0Bri8ntRa3/B4T4rblUUqboHkNQR7rqXxWZebg==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.11.2"
     axios "^0.19.0"
