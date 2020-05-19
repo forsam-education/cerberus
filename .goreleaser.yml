@@ -13,6 +13,10 @@ builds:
       - 386
     env:
       - CGO_ENABLED=0
+    ldflags:
+      - -s -w
+      - -X github.com/forsam-education/cerberus/utils.VersionHash=`git rev-parse HEAD`
+      - -X github.com/forsam-education/cerberus/utils.BuildTime=`date +%Y-%m-%dT%T%z`
 archives:
   - format: tar.gz
     wrap_in_directory: true
