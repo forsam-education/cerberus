@@ -31,7 +31,7 @@ require (
 	github.com/valyala/fasthttp v1.12.0
 	github.com/volatiletech/inflect v0.0.0-20170731032912-e7201282ae8d // indirect
 	github.com/volatiletech/null v8.0.0+incompatible
-	github.com/volatiletech/sqlboiler v3.6.1+incompatible
+	github.com/volatiletech/sqlboiler v3.7.1+incompatible
 	golang.org/x/crypto v0.0.0-20200219234226-1ad67e1f0ef4
 	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
 	gopkg.in/ini.v1 v1.52.0 // indirect
