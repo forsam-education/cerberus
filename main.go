@@ -1,4 +1,4 @@
-// +build go1.12
+// +build go1.14
 
 //go:generate sqlboiler -c ./build/sqlboiler.toml --no-context --add-global-variants mysql
 package main
