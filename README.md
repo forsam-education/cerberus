@@ -30,10 +30,6 @@ The persistent state is stored in a MySQL 8 database, therefor you must have one
 
 For the temporary state storage (and sharing it between the different instances of Cerberus running in your stack), it uses a Redis server in it's fifth version.
 
-## FrontEnd
-
-To administrate Cerberus, a web interface is available in addition to the REST API. You can find it's source code under the `web` directory, and it's documentation in it's [README](./web/README.md).
-
 ## Quality assurance
 
 To fix the basics of code format, you can run `go fmt ./...`.
@@ -42,7 +38,7 @@ For a bit more advanced code style checks, you can run `golint $(go list ./... |
 
 ## Dependencies upgrades
 
-The dependencies are automatically upgraded every Monday by Dependabot for both Javascript FrontEnd and Go Backend.
+The dependencies are automatically upgraded every Monday by Dependabot.
 
 ## Services caching flow
 

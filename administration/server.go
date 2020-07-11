@@ -18,10 +18,6 @@ import (
 func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
-	// Generate administration frontend fileserver.
-	//frontApplicationBox := packr.New("frontApplication", "../web/dist")
-	//frontAppServer := spaHandler{indexPath: "index.html", box: frontApplicationBox}
-
 	// Catch interrupt signal in channel.
 	signalCatcher := make(chan os.Signal, 1)
 	signal.Notify(signalCatcher, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGKILL)
@@ -29,7 +25,6 @@ func StartServer(ctx context.Context, group *sync.WaitGroup) {
 	// Initiate routes.
 	router := mux.NewRouter()
 	apiRouter := router.PathPrefix("/api/").Subrouter()
-	//router.PathPrefix("/").Handler(frontAppServer)
 	for _, middleware := range globalMiddlewares {
 		apiRouter.Use(middleware)
 	}

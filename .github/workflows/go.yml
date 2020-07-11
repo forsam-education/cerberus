@@ -30,26 +30,3 @@ jobs:
 
     - name: Build
       run: GOOS=linux go build -ldflags="-s -w" -o bin/cerberus ./main.go
-
-  frontend:
-    name: FrontEnd
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '>=12.14.1'
-
-      - name: Get dependencies
-        run: yarn install
-        working-directory: ./web
-
-      - name: Lint code
-        run: yarn lint
-        working-directory: ./web
-
-      - name: Build
-        run: yarn build
-        working-directory: ./web

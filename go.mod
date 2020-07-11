@@ -8,7 +8,6 @@ require (
 	github.com/friendsofgo/errors v0.9.2 // indirect
 	github.com/go-redis/redis v6.15.8+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
-	github.com/gobuffalo/envy v1.9.0 // indirect
 	github.com/gobuffalo/packr/v2 v2.8.0
 	github.com/gofrs/uuid v3.3.0+incompatible
 	github.com/gorilla/mux v1.7.4
