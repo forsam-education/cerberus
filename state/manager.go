@@ -30,26 +30,6 @@ type manager struct {
 	IsLeaderNode          bool
 }
 
-// GetCurrentRequestsCount fetches the current proxy request from the shared manager.
-func (manager *manager) GetCurrentRequestsCount() (int, error) {
-	return manager.RedisClient.Get(CurrentRequestsCount).Int()
-}
-
-// AddRequest adds a request to the current request count in the shared manager.
-func (manager *manager) AddRequest() error {
-	return manager.RedisClient.Incr(CurrentRequestsCount).Err()
-}
-
-// RemoveRequest removes a request from the current request count in the shared manager.
-func (manager *manager) RemoveRequest() error {
-	return manager.RedisClient.Decr(CurrentRequestsCount).Err()
-}
-
-// GetAndResetRequestCount performs a getset on the manager to get the request count and reset it to 0 in an atomic operation.
-func (manager *manager) GetAndResetRequestCount() (int, error) {
-	return manager.RedisClient.GetSet(CurrentRequestsCount, 0).Int()
-}
-
 // GetCurrentNodesCount fetches the cerberus nodes from the shared manager.
 func (manager *manager) GetCurrentNodesCount() (int, error) {
 	return manager.RedisClient.Get(CurrentNodesCount).Int()
@@ -161,7 +141,7 @@ func (manager *manager) AddService(service *models.Service) error {
 		return err
 	}
 
-	return manager.RedisClient.Set(service.ServicePath, string(serialized), viper.GetDuration(utils.RedisServerServiceTTL)*time.Minute).Err()
+	return manager.RedisClient.Set(service.ServicePath, string(serialized), viper.GetDuration(utils.RedisServerServiceTTL)*time.Second).Err()
 }
 
 func (manager *manager) RemoveService(service *models.Service) error {

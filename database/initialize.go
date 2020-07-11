@@ -37,14 +37,14 @@ func generateFirstUser() error {
 	}
 
 	user := models.User{
-		Username: "Admin",
+		Username: "admin",
 		Password: string(password),
 		Email:    "root@localhost",
 	}
 
 	err = user.InsertG(boil.Infer())
 
-	utils.Logger.Info(fmt.Sprintf("First user credentials: Admin - %s", plainPassword), nil)
+	utils.Logger.Info(fmt.Sprintf("First user credentials: admin - %s", plainPassword), nil)
 
 	return err
 }

@@ -46,11 +46,13 @@ func StartOrchestrator() {
 	err = handleDatabaseStartup()
 	if err != nil {
 		utils.Logger.StdErrorCritical(err, nil)
+		_ = state.Manager.RemoveNode()
 		os.Exit(1)
 	}
 
 	if err = proxy.LoadServices(); err != nil {
 		utils.Logger.StdErrorCritical(err, nil)
+		_ = state.Manager.RemoveNode()
 		os.Exit(1)
 	}
 
