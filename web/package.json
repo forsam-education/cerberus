@@ -14,7 +14,7 @@
     "bootstrap-css-only": "^4.4.1",
     "mdbvue": "^6.7.1",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6",
+    "vue-router": "^3.3.4",
     "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
