@@ -15,7 +15,7 @@ var versionCmd = &cobra.Command{
 
   Shows the version for Cerberus.`, utils.ASCIILogo),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Cerberus version %d.%d.%d - %s (Build time: %s)\n", utils.MajorVersion, utils.MinorVersion, utils.PatchVersion, utils.VersionHash, utils.BuildTime)
+		fmt.Printf("Cerberus version %s - %s (Build time: %s)\n", utils.VersionIdentifier, utils.VersionHash, utils.BuildTime)
 	},
 }
 
