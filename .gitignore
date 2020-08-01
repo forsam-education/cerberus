@@ -122,3 +122,6 @@ cerberus
 cerberus.toml
 cerberus2.toml
 config.toml
+
+*-packr.go
+packrd
