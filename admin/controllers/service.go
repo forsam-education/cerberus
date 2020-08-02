@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/forsam-education/cerberus/models"
 	"github.com/forsam-education/cerberus/proxy"
+	"github.com/forsam-education/cerberus/state"
 	"github.com/forsam-education/cerberus/utils"
 	"github.com/valyala/fasthttp"
 	"github.com/volatiletech/sqlboiler/boil"
@@ -46,4 +47,24 @@ func CreateService(context *fasthttp.RequestCtx) {
 		context.Response.SetStatusCode(http.StatusInternalServerError)
 		return
 	}
+}
+
+// UpdateService updates a service from JSON request, and remove it from redis to update the cache
+func UpdateService(context *fasthttp.RequestCtx) {
+	var service models.Service
+	if err := json.Unmarshal(context.Request.Body(), &service); err != nil {
+		context.Response.SetStatusCode(http.StatusBadRequest)
+		return
+	}
+	if _, err := service.UpdateG(boil.Infer()); err != nil {
+		context.Response.SetStatusCode(http.StatusInternalServerError)
+		return
+	}
+
+	if err := state.Manager.RemoveService(&service); err != nil {
+		context.Response.SetStatusCode(http.StatusInternalServerError)
+		return
+	}
+
+	context.Response.SetStatusCode(http.StatusNoContent)
 }
