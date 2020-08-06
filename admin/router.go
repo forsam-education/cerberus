@@ -5,13 +5,17 @@ import (
 	"github.com/forsam-education/cerberus/admin/controllers"
 )
 
+func initServicesRoutes(r *fasthttp.Group) {
+	r.GET("", controllers.ListServices)
+	r.POST("", controllers.CreateService)
+	r.PUT("", controllers.UpdateService)
+	r.PATCH("", controllers.UpdateService)
+}
+
 func initRouter() *fasthttp.Router {
 	router := fasthttp.New()
 
-	router.GET("/services", controllers.ListServices)
-	router.POST("/services", controllers.CreateService)
-	router.PUT("/services", controllers.UpdateService)
-	router.PATCH("/services", controllers.UpdateService)
+	initServicesRoutes(router.Group("/services"))
 
 	return router
 }
