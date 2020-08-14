@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/forsam-education/cerberus/models"
 	"github.com/forsam-education/cerberus/proxy"
 	"github.com/forsam-education/cerberus/state"
@@ -32,7 +33,15 @@ func CreateService(context *fasthttp.RequestCtx) {
 		context.Response.SetStatusCode(http.StatusBadRequest)
 		return
 	}
+
+	message := fmt.Sprintf("There was an error Bro ! : %s", context.Request.Body())
+
+	utils.Logger.Info(message, nil)
 	if err := service.InsertG(boil.Infer()); err != nil {
+
+
+
+
 		context.Response.SetStatusCode(http.StatusInternalServerError)
 		return
 	}
