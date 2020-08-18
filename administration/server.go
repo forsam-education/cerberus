@@ -12,6 +12,7 @@ import (
 	"syscall"
 )
 
+// StartServer starts the administration HTTP server.
 func StartServer(group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
@@ -19,6 +20,7 @@ func StartServer(group *sync.WaitGroup) {
 	signalCatcher := make(chan os.Signal, 1)
 	signal.Notify(signalCatcher, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGKILL)
 
+	// Initiate routes.
 	router := initRouter()
 
 	ln, err := reuseport.Listen("tcp4", host)
@@ -42,6 +44,7 @@ func StartServer(group *sync.WaitGroup) {
 		}
 	}()
 
+	// Wait for interruption signal.
 	<-signalCatcher
 
 	// Shutdown server.
