@@ -1,61 +1,54 @@
 package administration
 
 import (
-	"context"
 	"fmt"
 	"github.com/forsam-education/cerberus/utils"
-	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
-	"net/http"
+	"github.com/valyala/fasthttp"
+	"github.com/valyala/fasthttp/reuseport"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
-	"time"
 )
 
-// StartServer starts the administration HTTP server.
-func StartServer(ctx context.Context, group *sync.WaitGroup) {
+func StartServer(group *sync.WaitGroup) {
 	host := fmt.Sprintf("%s:%d", viper.GetString(utils.AdministrationServerHost), viper.GetInt(utils.AdministrationServerPort))
 
 	// Catch interrupt signal in channel.
 	signalCatcher := make(chan os.Signal, 1)
 	signal.Notify(signalCatcher, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGKILL)
 
-	// Initiate routes.
-	router := mux.NewRouter()
-	apiRouter := router.PathPrefix("/api/").Subrouter()
-	for _, middleware := range globalMiddlewares {
-		apiRouter.Use(middleware)
-	}
-	for _, route := range apiRoutes {
-		apiRouter.Handle(route.Path, route.Handler).Methods(route.Methods...)
+	router := initRouter()
+
+	ln, err := reuseport.Listen("tcp4", host)
+	if err != nil {
+		utils.Logger.StdError(err, nil)
+		os.Exit(1)
 	}
 
-	server := &http.Server{
-		Handler:      router,
-		Addr:         host,
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
+	server := fasthttp.Server{
+		Name:         "Admin",
+		Handler:      router.Handler,
+		LogAllErrors: true,
 	}
 
 	go func() {
-		utils.Logger.Info(fmt.Sprintf("Administration server listening on http://%s...", host), nil)
+		utils.Logger.Info(fmt.Sprintf("Admin server listening on http://%s...", host), nil)
 
-		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		if err := server.Serve(ln); err != nil {
 			utils.Logger.StdErrorCritical(err, nil)
 			os.Exit(1)
 		}
 	}()
 
-	// Wait for interruption signal.
 	<-signalCatcher
 
 	// Shutdown server.
-	if err := server.Shutdown(ctx); err != nil {
+	if err := server.Shutdown(); err != nil {
 		utils.Logger.Critical(err.Error(), nil)
 	}
 
-	utils.Logger.Info("Administration server stopped.", nil)
+	utils.Logger.Info("Admin server stopped.", nil)
 	group.Done()
 }

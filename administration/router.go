@@ -1,8 +1,8 @@
-package admin
+package administration
 
 import (
 	fasthttp "github.com/fasthttp/router"
-	"github.com/forsam-education/cerberus/admin/controllers"
+	"github.com/forsam-education/cerberus/administration/controllers"
 )
 
 func initServicesRoutes(r *fasthttp.Group) {

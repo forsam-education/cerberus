@@ -37,14 +37,14 @@ func generateFirstUser() error {
 	}
 
 	user := models.User{
-		Username: "admin",
+		Username: "administration",
 		Password: string(password),
 		Email:    "root@localhost",
 	}
 
 	err = user.InsertG(boil.Infer())
 
-	utils.Logger.Info(fmt.Sprintf("First user credentials: admin - %s", plainPassword), nil)
+	utils.Logger.Info(fmt.Sprintf("First user credentials: administration - %s", plainPassword), nil)
 
 	return err
 }
@@ -65,7 +65,7 @@ func HandleFirstStart() error {
 		return nil
 	}
 	utils.Logger.Info("First start detected, generating default data...", nil)
-	utils.Logger.Info("Generating first admin user...", nil)
+	utils.Logger.Info("Generating first administration user...", nil)
 
 	return generateFirstUser()
 }
