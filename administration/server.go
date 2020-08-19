@@ -36,7 +36,7 @@ func StartServer(group *sync.WaitGroup) {
 	}
 
 	go func() {
-		utils.Logger.Info(fmt.Sprintf("Admin server listening on http://%s...", host), nil)
+		utils.Logger.Info(fmt.Sprintf("Administration server listening on http://%s...", host), nil)
 
 		if err := server.Serve(ln); err != nil {
 			utils.Logger.StdErrorCritical(err, nil)
@@ -52,6 +52,6 @@ func StartServer(group *sync.WaitGroup) {
 		utils.Logger.Critical(err.Error(), nil)
 	}
 
-	utils.Logger.Info("Admin server stopped.", nil)
+	utils.Logger.Info("Administration server stopped.", nil)
 	group.Done()
 }
