@@ -1,7 +1,6 @@
 package orchestrator
 
 import (
-	"context"
 	"github.com/forsam-education/cerberus/administration"
 	"github.com/forsam-education/cerberus/database"
 	"github.com/forsam-education/cerberus/proxy"
@@ -60,7 +59,7 @@ func StartOrchestrator() {
 	waitgroup.Add(1)
 
 	go proxy.StartServer(&waitgroup)
-	go administration.StartServer(context.Background(), &waitgroup)
+	go administration.StartServer(&waitgroup)
 
 	waitgroup.Wait()
 

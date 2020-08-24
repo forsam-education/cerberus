@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.4.0 // indirect
+	github.com/fasthttp/router v1.2.4
 	github.com/forsam-education/simplelogger v0.2.4
 	github.com/friendsofgo/errors v0.9.2 // indirect
 	github.com/go-redis/redis v6.15.8+incompatible
