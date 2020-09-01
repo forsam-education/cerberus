@@ -49,6 +49,8 @@ github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZm
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/fasthttp/router v1.2.4 h1:RBWbCv4vVf+boczSZh/rX9PDSdR9F8I9zSnVJx5YJfU=
 github.com/fasthttp/router v1.2.4/go.mod h1:Au2V1CaqqAdzQQcPKrbkFAsImd1aHpadrce21AIPnvE=
+github.com/fasthttp/router v1.3.1 h1:DYWvNcemX4CIYE6OmiaRaTN2ny8CONIw6g4tOM0EEbI=
+github.com/fasthttp/router v1.3.1/go.mod h1:athTSKMdel0Qhh3W4nB8qn+EPYuyj6YZMUo6ZcXWTgc=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/forsam-education/simplelogger v0.2.4 h1:jbTryJhnT9vqG2XdQCozKsbY00/OyCa/0ze4U3nWowE=
 github.com/forsam-education/simplelogger v0.2.4/go.mod h1:c989Hd0KCOKC2pJ4+qCcP2+tcbCQubKxy2LY2yE6Y8w=
@@ -286,6 +288,8 @@ github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6Kllzaw
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 github.com/valyala/fasthttp v1.15.1 h1:eRb5jzWhbCn/cGu3gNJMcOfPUfXgXCcQIOHjh9ajAS8=
 github.com/valyala/fasthttp v1.15.1/go.mod h1:YOKImeEosDdBPnxc0gy7INqi3m1zK6A+xl6TwOBhHCA=
+github.com/valyala/fasthttp v1.16.0 h1:9zAqOYLl8Tuy3E5R6ckzGDJ1g8+pw15oQp2iL9Jl6gQ=
+github.com/valyala/fasthttp v1.16.0/go.mod h1:YOKImeEosDdBPnxc0gy7INqi3m1zK6A+xl6TwOBhHCA=
 github.com/valyala/tcplisten v0.0.0-20161114210144-ceec8f93295a h1:0R4NLDRDZX6JcmhJgXi5E4b8Wg84ihbmUKp/GvSPEzc=
 github.com/valyala/tcplisten v0.0.0-20161114210144-ceec8f93295a/go.mod h1:v3UYOV9WzVtRmSR+PDvWpU/qWl4Wa5LApYYX4ZtKbio=
 github.com/volatiletech/inflect v0.0.0-20170731032912-e7201282ae8d h1:gI4/tqP6lCY5k6Sg+4k9qSoBXmPwG+xXgMpK7jivD4M=
