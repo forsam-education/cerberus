@@ -7,7 +7,7 @@ require (
 	github.com/fasthttp/router v1.3.1
 	github.com/forsam-education/simplelogger v0.2.4
 	github.com/friendsofgo/errors v0.9.2 // indirect
-	github.com/go-redis/redis v6.15.8+incompatible
+	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gobuffalo/packr/v2 v2.8.0
 	github.com/gofrs/uuid v3.3.0+incompatible
