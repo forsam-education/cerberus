@@ -51,6 +51,8 @@ github.com/fasthttp/router v1.2.4 h1:RBWbCv4vVf+boczSZh/rX9PDSdR9F8I9zSnVJx5YJfU
 github.com/fasthttp/router v1.2.4/go.mod h1:Au2V1CaqqAdzQQcPKrbkFAsImd1aHpadrce21AIPnvE=
 github.com/fasthttp/router v1.3.1 h1:DYWvNcemX4CIYE6OmiaRaTN2ny8CONIw6g4tOM0EEbI=
 github.com/fasthttp/router v1.3.1/go.mod h1:athTSKMdel0Qhh3W4nB8qn+EPYuyj6YZMUo6ZcXWTgc=
+github.com/fasthttp/router v1.3.2 h1:n9r5QNuJi5z5Sp2vp/0SrawogTjGfYFqTOyP/R8ehNI=
+github.com/fasthttp/router v1.3.2/go.mod h1:athTSKMdel0Qhh3W4nB8qn+EPYuyj6YZMUo6ZcXWTgc=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/forsam-education/simplelogger v0.2.4 h1:jbTryJhnT9vqG2XdQCozKsbY00/OyCa/0ze4U3nWowE=
 github.com/forsam-education/simplelogger v0.2.4/go.mod h1:c989Hd0KCOKC2pJ4+qCcP2+tcbCQubKxy2LY2yE6Y8w=
