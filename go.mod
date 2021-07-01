@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.4.0 // indirect
-	github.com/fasthttp/router v1.3.2
+	github.com/fasthttp/router v1.4.0
 	github.com/forsam-education/simplelogger v0.2.4
 	github.com/friendsofgo/errors v0.9.2 // indirect
 	github.com/go-redis/redis v6.15.9+incompatible
@@ -25,11 +25,11 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.7.1
-	github.com/valyala/fasthttp v1.16.0
+	github.com/valyala/fasthttp v1.27.0
 	github.com/volatiletech/inflect v0.0.0-20170731032912-e7201282ae8d // indirect
 	github.com/volatiletech/null v8.0.0+incompatible
 	github.com/volatiletech/sqlboiler v3.7.1+incompatible
-	golang.org/x/crypto v0.0.0-20200219234226-1ad67e1f0ef4
+	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
 	gopkg.in/ini.v1 v1.52.0 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
