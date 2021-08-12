@@ -1,14 +1,25 @@
-
 version: 2
 updates:
   - package-ecosystem: gomod
-    directory: /
+    directory: "/"
     schedule:
-      interval: daily
-      time: "07:00"
-    commit-message:
-      prefix: "Upgrade:"
+      interval: monthly
+      time: "04:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - QRaimbault
+    assignees:
+      - QRaimbault
     labels:
-      - go
       - chore
+      - go
       - dependencies
+    ignore:
+      - dependency-name: github.com/valyala/fasthttp
+        versions:
+          - 1.18.0
+          - 1.19.0
+      - dependency-name: github.com/fasthttp/router
+        versions:
+          - 1.3.4
+          - 1.3.5
